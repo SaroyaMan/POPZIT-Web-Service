@@ -1,0 +1,190 @@
+[
+  {
+    "name": "Art Pop",
+    "albums": [
+      {
+        "artist": "Cher",
+        "album": "Believe"
+      },
+      {
+        "artist": "Britney Spears",
+        "album": "Circus"
+      }
+    ]
+  },
+  {
+    "name": "Bubblegum Pop",
+    "albums": [
+      {
+        "artist": "Madonna",
+        "album": "Confessions on a Dance Floor"
+      }
+    ]
+  },
+  {
+    "name": "Cantopop",
+    "albums": [
+      {
+        "artist": "Madonna",
+        "album": "Like a Prayer"
+      }
+    ]
+  },
+  {
+    "name": "Christian Pop",
+    "albums": [
+      {
+        "artist": "Britt Nicole",
+        "album": "The Lost Get Found"
+      },
+      {
+        "artist": "Britt Nicole",
+        "album": "Say It"
+      }
+    ]
+  },
+  {
+    "name": "Dance Pop",
+    "albums": [
+      {
+        "artist": "Britney Spears",
+        "album": "Greatest Hits: My Prerogative"
+      },
+      {
+        "artist": "Britney Spears",
+        "album": "Circus"
+      }
+    ]
+  },
+  {
+    "name": "Electropop",
+    "albums": [
+      {
+        "artist": "Lady Gaga",
+        "album": "The Fame"
+      }
+    ]
+  },
+  {
+    "name": "Europop",
+    "albums": [
+      {
+        "artist": "R.E.M",
+        "album": "In Time: The Best of R.E.M. 1988-2003"
+      },
+      {
+        "artist": "Queen",
+        "album": "The Game"
+      },
+      {
+        "artist": "Queen",
+        "album": "Greatest Hits"
+      },
+      {
+        "artist": "Queen",
+        "album": "Made In Heaven"
+      }
+    ]
+  },
+  {
+    "name": "K-pop",
+    "albums": [
+      {
+        "artist": "WJSN",
+        "album": "The Secret"
+      },
+      {
+        "artist": "WJSN",
+        "album": "Would You Like?"
+      }
+    ]
+  },
+  {
+    "name": "Latin",
+    "albums": [
+      {
+        "artist": "Michel Teló",
+        "album": "Na Balada"
+      }
+    ]
+  },
+  {
+    "name": "Operatic Pop",
+    "albums": [
+      {
+        "artist": "Twenty One Pilots",
+        "album": "Blurryface"
+      },
+      {
+        "artist": "Muse",
+        "album": "Black Holes and Revelations"
+      }
+    ]
+  },
+  {
+    "name": "Progressive Pop",
+    "albums": [
+      {
+        "artist": "Linkin Park",
+        "album": "A Thousand Suns"
+      }
+    ]
+  },
+  {
+    "name": "Sophisti-pop",
+    "albums": [
+      {
+        "artist": "Maroon 5 ",
+        "album": "Songs About Jane"
+      }
+    ]
+  },
+  {
+    "name": "Synth-pop",
+    "albums": [
+      {
+        "artist": "Men Without Hats",
+        "album": "Rhythm of Youth"
+      },
+      {
+        "artist": "Men Without Hats",
+        "album": "Pop Goes the World"
+      }
+    ]
+  },
+  {
+    "name": "Space age Pop",
+    "albums": [
+      {
+        "artist": "One Direction",
+        "album": "Up All Night"
+      }
+    ]
+  },
+  {
+    "name": "Sunshine Pop",
+    "albums": [
+      {
+        "artist": "Taylor Swift",
+        "album": "Red"
+      },
+      {
+        "artist": "Taylor Swift",
+        "album": "Taylor Swift"
+      }
+    ]
+  },
+  {
+    "name": "Teen Pop",
+    "albums": [
+      {
+        "artist": "Katy Perry",
+        "album": "Teenage Dream"
+      },
+      {
+        "artist": "Katy Perry",
+        "album": "California Gurls"
+      }
+    ]
+  }
+]
