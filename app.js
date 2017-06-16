@@ -9,7 +9,7 @@ const keys = require('./keys');
 
 const index = require('./routes/index');
 const userRoutes = require('./routes/users');
-const subgenreRoutes = require('./routes/subgenres');
+const musicRoutes = require('./routes/music');
 
 const app = express();
 mongoose.connect(keys.MLAB_KEY);
@@ -35,7 +35,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/subgenre', subgenreRoutes);
+app.use('/subgenre', musicRoutes);
 app.use('/user', userRoutes);
 app.use('/', index);
 
