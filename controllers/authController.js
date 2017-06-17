@@ -14,7 +14,7 @@ exports.signup = (req, res, next) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         birthdate: req.body.birthdate,
-        gravatarHash: md5(email)
+        gravatarHash: md5(email)    //encrypt the email in order to get gravatar Hash code
     });
     user.save( (err, result) => {
         if(err) {

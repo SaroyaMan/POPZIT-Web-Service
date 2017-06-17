@@ -5,7 +5,7 @@ const express      = require('express'),
       cookieParser = require('cookie-parser'),
       bodyParser   = require('body-parser');
 
-//Import routes
+//import routes
 const apiRoutes    = require('./routes/api'),
       userRoutes   = require('./routes/users'),
       musicRoutes  = require('./routes/music');
@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//prepare headers
 app.use( (req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -32,6 +33,7 @@ app.use( (req, res, next) => {
     next();
 });
 
+//loading the routes
 app.use('/music', musicRoutes);
 app.use('/user', userRoutes);
 app.use('/', apiRoutes);

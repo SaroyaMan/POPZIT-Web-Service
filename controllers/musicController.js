@@ -83,11 +83,13 @@ function getSongParsed(artist, track) {
                         }
                         const dom = new JSDOM(body);
                         let youtubeId = dom.window.document.querySelector(`a[data-youtube-id]`).getAttribute("data-youtube-id");
+                        let albumName = lastFmJsonSong.track.album !== undefined ?
+                            lastFmJsonSong.track.album.title : 'unknown';
                         songJson =
                             {
                                 "artist": artist,
                                 "track": track,
-                                "album": lastFmJsonSong.track.album.title,
+                                "album": albumName,
                                 "youtubeId": youtubeId,
                                 "youtube": `https://www.youtube.com/watch?v=${youtubeId}`
                             };
