@@ -7,7 +7,7 @@ const schema = new Schema({
     password:{type:String, required: true},
     firstName:{type:String, required: true},
     lastName:{type:String, required: true},
-    date: {type:Date, required: true },
+    birthdate: {type:Date, required: true },
     gravatarHash: {type:String, required: true}
 }, {collection: 'users'});
 

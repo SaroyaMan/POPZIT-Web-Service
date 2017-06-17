@@ -1,17 +1,20 @@
 const bcrypt = require('bcryptjs'),
       jwt = require('jsonwebtoken'),
+      md5 = require('md5'),
       User = require('../models/user');
 
 
 exports.signup = (req, res, next) => {
 
+    let email = req.body.email;
+
     let user = new User({
-        email: req.body.email,
+        email: email,
         password: bcrypt.hashSync(req.body.password, 10), //encrypt the password
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        date: req.body.date,
-        gravatarHash: req.body.gravatarHash
+        birthdate: req.body.birthdate,
+        gravatarHash: md5(email)
     });
     user.save( (err, result) => {
         if(err) {

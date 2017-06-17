@@ -9,7 +9,6 @@
   },
   "author": "",
   "license": "ISC",
-
   "dependencies": {
     "async": "^2.4.1",
     "bcryptjs": "^2.4.3",
@@ -20,6 +19,7 @@
     "hbs": "~4.0.1",
     "jsdom": "^11.0.0",
     "jsonwebtoken": "^7.4.1",
+    "md5": "^2.2.1",
     "mongoose": "^4.10.5",
     "mongoose-unique-validator": "^1.0.5",
     "morgan": "~1.8.1",
