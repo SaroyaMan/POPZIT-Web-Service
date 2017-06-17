@@ -3,7 +3,7 @@ const express = require('express'),
       musicController = require('../controllers/musicController');
 
 //get static subgenres
-router.get('/', musicController.getDefaultSubgenres);
+router.get('/defaultSubgenres', musicController.getDefaultSubgenres);
 
 //get album
 router.get('/album', musicController.getAlbum);
@@ -11,7 +11,8 @@ router.get('/album', musicController.getAlbum);
 //get song
 router.get('/song', musicController.getSong);
 
-//get songs from album
-//router.post('/album_songs', musicController.getSongsFromAlbum);
+//get song youtube details
+router.get('/youtubeSong', musicController.getYoutubeSong);
+
 
 module.exports = router;

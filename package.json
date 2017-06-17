@@ -1,10 +1,15 @@
 {
-  "name": "ws-popzit",
-  "version": "0.0.0",
-  "private": true,
+  "name": "popzit_ws",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node ./bin/www"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
+  "author": "",
+  "license": "ISC",
+
   "dependencies": {
     "async": "^2.4.1",
     "bcryptjs": "^2.4.3",
@@ -13,8 +18,6 @@
     "debug": "~2.6.3",
     "express": "~4.15.2",
     "hbs": "~4.0.1",
-    "jQuery": "^1.7.4",
-    "jquery": "^3.2.1",
     "jsdom": "^11.0.0",
     "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.10.5",
@@ -22,6 +25,6 @@
     "morgan": "~1.8.1",
     "request": "^2.81.0",
     "serve-favicon": "~2.4.2",
-    "sync-request": "^4.1.0"
+    "youtube-search": "^1.0.10"
   }
 }

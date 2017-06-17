@@ -7,7 +7,7 @@ exports.signup = (req, res, next) => {
 
     let user = new User({
         email: req.body.email,
-        password: bcrypt.hashSync(req.body.password, 10),
+        password: bcrypt.hashSync(req.body.password, 10), //encrypt the password
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         date: req.body.date,
@@ -29,6 +29,7 @@ exports.signup = (req, res, next) => {
 
 
 exports.signin = (req, res, next) => {
+
     User.findOne({email: req.body.email}, (err, doc) => {
         if(err) {                                        //some error...
             return res.status(500).json({
