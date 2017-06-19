@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs'),
-      jwt = require('jsonwebtoken'),
-      md5 = require('md5'),
-      User = require('../models/user');
+      jwt    = require('jsonwebtoken'),
+      md5    = require('md5'),
+      User   = require('../models/user');
 
 
 exports.signup = (req, res, next) => {

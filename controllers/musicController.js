@@ -1,8 +1,8 @@
-const subgenres = require('../data/subgenres.json'),
-      keys = require('../keys'),
-      request = require('request'),
-      jsdom = require("jsdom"),
-      { JSDOM } = jsdom,
+const subgenres     = require('../data/subgenres.json'),
+      keys          = require('../keys'),
+      request       = require('request'),
+      jsdom         = require("jsdom"),
+      { JSDOM }     = jsdom,
       youtubeSearch = require('youtube-search');
 
 
@@ -17,12 +17,20 @@ exports.getAlbum = (req, res, next) => {
         artist = req.query.artist;
 
     if(artist === undefined || album === undefined) {
-        res.status(400).json({"error": 'artist or track not sent'});
+        res.status(400).json({"error": 'artist or name not sent'});
         return; //In order to avoid sending a response twice to the client.
     }
 
     request.get(`${keys.LASTFM_KEY}&method=album.getinfo&artist=${artist}&album=${album}`, (err, resp, body) => {
-        res.status(200).json(JSON.parse(body));
+
+        let lastFmAlbomJson = JSON.parse(body);
+
+        //if(lastFmAlbomJson.album === null) {
+        //    res.status(400).json({"error": `Album ${album} by artist ${artist} has not been found`});
+        //    return; //In order to avoid sending a response twice to the client.
+        //}
+
+        res.status(200).json(lastFmAlbomJson);
     });
 };
 
@@ -36,7 +44,9 @@ exports.getSong = (req, res, next) => {
         return; //In order to avoid sending a response twice to the client.
     }
 
-    getSongParsed(artist, track).then( (jsonResponse) => res.status(200).json(jsonResponse));
+    getSongParsed(artist, track)
+        .then( (jsonResponse)       => res.status(200).json(jsonResponse))
+        .catch( (jsonErrorResponse) => res.status(400).json(jsonErrorResponse));
 
 };
 
@@ -71,18 +81,31 @@ function getSongParsed(artist, track) {
         request.get(`${keys.LASTFM_KEY}&method=track.getInfo&artist=${artist}&track=${track}`,
             (err, resp, body) => {
                 if(err) {
-                    res.status(500).json({"error": err});
+                    reject({"error": err});
                     return; //In order to avoid sending a response twice to the client.
                 }
 
                 let lastFmJsonSong = JSON.parse(body);
+
+
+                if(lastFmJsonSong.track === undefined) {       //Song not found
+                    reject({"error": `Song ${track} by artist ${artist} has not been found`});
+                    return; //In order to avoid sending a response twice to the client.
+                }
+
                 request.get(lastFmJsonSong.track.url, (err, resp, body) => {
                         if(err) {
-                            res.status(500).json({"error": err});
+                            reject({"error": err});
                             return; //In order to avoid sending a response twice to the client.
                         }
                         const dom = new JSDOM(body);
-                        let youtubeId = dom.window.document.querySelector(`a[data-youtube-id]`).getAttribute("data-youtube-id");
+                        let anchorTag = dom.window.document.querySelector(`a[data-youtube-id]`);
+                        if(anchorTag === null) {       //Song not found
+                            reject({"error": `Song ${track} by artist ${artist} has not been found`});
+                            return; //In order to avoid sending a response twice to the client.
+                        }
+
+                        let youtubeId = anchorTag.getAttribute("data-youtube-id");
                         let albumName = lastFmJsonSong.track.album !== undefined ?
                             lastFmJsonSong.track.album.title : 'unknown';
                         songJson =
