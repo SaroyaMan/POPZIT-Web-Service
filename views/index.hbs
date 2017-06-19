@@ -1,2 +1,6001 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<section><h1 class="B"><img src="/images/logo.png" id="logo"> POPZIT WS API</h1>
+    <h3>API Documentation </h3>
+    <h3>root: http://localhost:3000/</h3>
+    <h5> &#169; Keren Gold & Yoav Saroya</h5>
+
+    <div class="contanier">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Users</a></li>
+            <li><a data-toggle="tab" href="#menu2">Music</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+
+                <h1 class="B1">Users</h1>
+                <div class="contanier">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#signup">Create user (Sign Up)</a></li>
+                        <li><a data-toggle="tab" href="#signin">Get user (Sign In)</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="signup" class="tab-pane fade in active">
+                            <h2 class="B2"> User Sign Up</h2>
+                            <pre class="prex">/user/signup</pre>
+                            <h4 class="verb">Verb: POST</h4>
+                            <h5>Example Request:</h5>
+                            <pre class="prex" class="prex">{
+    "email":"keren@gmail.com",
+    "password":"*******",
+    "firstName":"keren",
+    "lastName":nina"
+    "birthdate":"31/12/1990"
+    }
+                            </pre>
+                            <h5>Parameters:</h5>
+                            <table>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td>email</td>
+                                    <td>String</td>
+                                    <td>User email address</td>
+                                </tr>
+                                <tr>
+                                    <td>password</td>
+                                    <td>String</td>
+                                    <td>User password</td>
+                                </tr>
+                                <tr>
+                                    <td>firstName</td>
+                                    <td>String</td>
+                                    <td>User first name</td>
+                                </tr>
+                                <tr>
+                                    <td>lastName</td>
+                                    <td>String</td>
+                                    <td>User last name</td>
+                                </tr>
+                                <tr>
+                                    <td>birthdate</td>
+                                    <td>Date</td>
+                                    <td>User date of birth</td>
+                                </tr>
+                            </table>
+                            <hr>
+                            <h3 class="greenText">Success 201</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+    message:"User Created"
+    obj: {
+        birthdate:"1990-12-31T22:00:00.000Z"
+        email:"keren@gmail.com"
+        firstName:"keren"
+        gravatarHash:"acfa3f84eb23cf9dd6d1128decf9cbf0"
+        lastName:"nina"
+        password:"$2a$10$554qYDMfe3Q1lJ8ysw915u24E3dtzM.YbAWj4AaQ.jYuOQqkYrW1
+    }
+ </pre>
+                            <hr>
+                            <h3 class="redText">Error 500</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+    Object {title: "An error occured", error: Object}
+    error:Object
+    errors:Object
+    message:"User validation failed: email: Error, expected `email` to be unique. Value: `keren@gmail.com`"
+    name:"ValidationError"
+    _message:"User validation failed"
+                            </pre>
+                            <hr>
+                        </div>
+                        <div id="signin" class="tab-pane fade">
+                            <h2 class="B2">  User Sign In</h2>
+                            <pre class="prex">/user/signin</pre>
+                            <h4 class="verb">Verb: POST</h4>
+                            <h5>Example Request:</h5>
+                            <pre class="prex">
+    {
+    "email":"keren@gmail.com",
+    "password":"*******"
+    }
+                            </pre>
+                            <h5>Parameters:</h5>
+                            <table>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td>email</td>
+                                    <td>String</td>
+                                    <td>User email address</td>
+                                </tr>
+                                <tr>
+                                    <td>password</td>
+                                    <td>String</td>
+                                    <td>User password must contain 6 charecters</td>
+                                </tr>
+                            </table>
+                            <h3 class="greenText">Success 200</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+    {
+    "message":"Successfully logged in",
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjU5NDNkOGU3NjkyZTIzNDFlYTIxMzIwNSIsImVtYWlsIjoia2VyZW5nb2w1NUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCRGSnc2b3JOVjBHRGhhTDBDa3lpT3RPRzhINTU5WHAzUlQwbGZ5Y2ZEWUJzNVpBODlnU3NjcSIsImZpcnN0TmFtZSI6IktFUkVOSU5BIiwibGFzdE5hbWUiOiJOSU5BIiwiZGF0ZSI6IjE5NDktMDItMDFUMjI6MDA6MDAuMDAwWiIsImdyYXZhdGFySGFzaCI6ImE1ZjFlMTBlZDQ3YjQ1ODI3YWRiODZkM2NlODVhMmY3IiwiX192IjowfSwiaWF0IjoxNDk3NzA0MDM5LCJleHAiOjE0OTc3MTEyMzl9.FTOkftPX77MPFccJ8wC6R7e4PwqRXXv7vqUkaV6gQ_M",
+    "user":{"_id":"5943d8e7692e2341ea213205",
+    "email":"keren@gmail.com",
+    "password":"$2a$10$FJw6orNV0GDhaL0CkyiOtOG8H559Xp3RT0lfycfDYBs5ZA89gSscq",
+    "firstName":"keren",
+    "lastName":"nina",
+    "date":"1949-02-01T22:00:00.000Z",
+    "gravatarHash":"a5f1e10ed47b45827adb86d3ce85a2f7",
+    "__v":0},"userId":"5943d8e7692e2341ea213205"
+    }
+                            </pre>
+                            <h3 class="redText">Error 401</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+    Response {_body:
+    {"title":"Login failed",
+    "error":{"message":"Invalid login credentials"}}",
+    status: 401, ok: false,
+    statusText: "Unauthorized",
+    headers: Headers…}
+    headers:
+    Headersok: falsestatus:
+    401statusText: "Unauthorized"type: 2url:
+    "http://localhost:3000/user/signin"_body:
+     "{"title":"Login failed",
+    "error":{"message":"Invalid login credentials"}"
+    __proto__: Body
+                            </pre>
+                            <hr>
+                            <h3 class="redText">Error 500</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+        {"title":"An error occured",
+        "error":
+        {"errors":
+        {"gravatarHash":
+        {"message":"Path `gravatarHash` is required.",
+        "name":"ValidatorError",
+        "properties":
+        {"type":"required",
+        "message":"Path `{PATH}` is required.",
+        "path":"gravatarHash"},"kind":"required",
+        "path":"gravatarHash"},
+        "date":
+        {"message":"Path `date` is required.",
+        "name":"ValidatorError",
+        "properties":{"type":"required",
+        "message":"Path `{PATH}` is required.",
+        "path":"date"},"kind":"required","path":"date"},
+        "lastName":{"message":"Path `lastName` is required.",
+        "name":"ValidatorError",
+        "properties":{"type":"required",
+        "message":"Path `{PATH}` is required.",
+        "path":"lastName"},
+        "kind":"required",
+        "path":"lastName"},
+        "firstName":
+        {"message":"Path `firstName` is required.",
+        "name":"ValidatorError",
+        "properties":
+        {"type":"required",
+        "message":"Path `{PATH}` is required.",
+        "path":"firstName"},
+        "kind":"required",
+        "path":"firstName"},
+        "email":
+        {"message":"Error,
+        expected `email` to be unique. Value: `kerengol55@gmail.com`",
+        "name":"ValidatorError",
+        "properties":{"type":"unique",
+                    "message":"Error,
+                    expected `{PATH}` to be unique. Value: `{VALUE}`",
+                    "path":"email",
+                    "value":"kerengol55@gmail.com"},
+                      "kind":"unique",
+                     "path":"email",
+                    "value":"kerengol55@gmail.com"}},
+                "_message":"User validation failed",
+        "name":"ValidationError",
+        "message":"User validation failed: gravatarHash: Path `gravatarHash` is required.,
+        date: Path `date` is required.,
+        lastName: Path `lastName` is required.,
+        firstName: Path `firstName` is required.,
+        email: Error,
+        expected `email` to be unique. Value: `kerengol55@gmail.com`"}}
+</pre>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="menu2" class="tab-pane fade">
+                <h1 class="B1">Music</h1>
+                <div class="contanier">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#getall">Get all subgenres</a></li>
+                        <li><a data-toggle="tab" href="#getalbum">Get album </a></li>
+                        <li><a data-toggle="tab" href="#getsong">Get song </a></li>
+                        <li><a data-toggle="tab" href="#getyoutube">Get Youtube song </a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="getall" class="tab-pane fade in active">
+                            <h2 class="B2">Get all subgenres</h2>
+                            <pre class="prex">/music/defaultSubgenres</pre>
+                            <h4 class="verb">Verb: GET</h4>
+                            <h5>Example Request:</h5>
+                            <pre class="prex">http://localhost:3000/music/defaultSubgenres</pre>
+                            <h6>Show by default all the subgenres</h6>
+                            <h3 class="greenText">Success 200</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+[{"name": "Art Pop",
+  "albums": [{
+    "artist": "Cher",
+    "name": "Believe",
+    "imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/b0c2311a9af7f0edbc8b99450944ca1b.png",
+    "songs": [{
+      "name": "Believe",
+      "url": "https://www.last.fm/music/Cher/_/Believe",
+      "duration": "240",
+      "@attr": {
+        "rank": "1"
+      },
+      "streamable": {
+        "#text": "0",
+        "fulltrack": "0"
+      },
+      "artist": {
+        "name": "Cher",
+        "mbid": "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        "url": "https://www.last.fm/music/Cher"
+      }
+    }, {
+      "name": "The Power",
+      "url": "https://www.last.fm/music/Cher/_/The+Power",
+      "duration": "236",
+      "@attr": {
+        "rank": "2"
+      },
+      "streamable": {
+        "#text": "0",
+        "fulltrack": "0"
+      },
+      "artist": {
+        "name": "Cher",
+        "mbid": "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        "url": "https://www.last.fm/music/Cher"
+      }
+    }, {
+      "name": "Runaway",
+      "url": "https://www.last.fm/music/Cher/_/Runaway",
+      "duration": "286",
+      "@attr": {
+        "rank": "3"
+      },
+      "streamable": {
+        "#text": "0",
+        "fulltrack": "0"
+      },
+      "artist": {
+        "name": "Cher",
+        "mbid": "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        "url": "https://www.last.fm/music/Cher"
+      }
+    }, {
+      "name": "All or Nothing",
+      "url": "https://www.last.fm/music/Cher/_/All+or+Nothing",
+      "duration": "238",
+      "@attr": {
+        "rank": "4"
+      },
+      "streamable": {
+        "#text": "0",
+        "fulltrack": "0"
+      },
+      "artist": {
+        "name": "Cher",
+        "mbid": "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        "url": "https://www.last.fm/music/Cher"
+      }
+    }, {
+      "name": "Strong Enough",
+      "url": "https://www.last.fm/music/Cher/_/Strong+Enough",
+      "duration": "221",
+      "@attr": {
+        "rank": "5"
+      },
+      "streamable": {
+        "#text": "0",
+        "fulltrack": "0"
+      },
+      "artist": {
+        "name": "Cher",
+        "mbid": "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        "url": "https://www.last.fm/music/Cher"
+      }
+    }, {
+      "name": "Dov'e L'amore",
+      "url": "https://www.last.fm/music/Cher/_/Dov%27e+L%27amore",
+      "duration": "258",
+      "@attr": {
+        "rank": "6"
+      },
+      "streamable": {
+        "#text": "0",
+        "fulltrack": "0"
+      },
+      "artist": {
+        "name": "Cher",
+        "mbid": "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        "url": "https://www.last.fm/music/Cher"
+      }
+    }, {
+      "name": "Takin' Back My Heart",
+      "url": "https://www.last.fm/music/Cher/_/Takin%27+Back+My+Heart",
+      "duration": "272",
+      "@attr": {
+        "rank": "7"
+      },
+      "streamable": {
+        "#text": "0",
+        "fulltrack": "0"
+      },
+      "artist": {
+        "name": "Cher",
+        "mbid": "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        "url": "https://www.last.fm/music/Cher"
+      }
+    }, {
+      "name": "Taxi Taxi",
+      "url": "https://www.last.fm/music/Cher/_/Taxi+Taxi",
+      "duration": "304",
+      "@attr": {
+        "rank": "8"
+      },
+      "streamable": {
+        "#text": "0",
+        "fulltrack": "0"
+      },
+      "artist": {
+        "name": "Cher",
+        "mbid": "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        "url": "https://www.last.fm/music/Cher"
+      }
+    }, {
+      "name": "Love Is the Groove",
+      "url": "https://www.last.fm/music/Cher/_/Love+Is+the+Groove",
+      "duration": "271",
+      "@attr": {
+        "rank": "9"
+      },
+      "streamable": {
+        "#text": "0",
+        "fulltrack": "0"
+      },
+      "artist": {
+        "name": "Cher",
+        "mbid": "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        "url": "https://www.last.fm/music/Cher"
+      }
+    }, {
+      "name": "We All Sleep Alone",
+      "url": "https://www.last.fm/music/Cher/_/We+All+Sleep+Alone",
+      "duration": "234",
+      "@attr": {
+        "rank": "10"
+      },
+      "streamable": {
+        "#text": "0",
+        "fulltrack": "0"
+      },
+      "artist": {
+        "name": "Cher",
+        "mbid": "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        "url": "https://www.last.fm/music/Cher"
+      }
+    }]
+  }, {
+    "artist": "Britney Spears",
+    "name": "Circus",
+    "imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/d53a96f25a25a2f09a1c9b7bfdd7cdeb.png",
+    "songs": [{
+      "name": "Womanizer",
+      "url": "https://www.last.fm/music/Britney+Spears/_/Womanizer",
+      "duration": "224",
+      "@attr": {
+        "rank": "1"
+      },
+      "streamable": {
+        "#text": "0",
+        "fulltrack": "0"
+      },
+      "artist": {
+        "name": "Britney Spears",
+        "mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+        "url": "https://www.last.fm/music/Britney+Spears"
+      }
+    }, {
+      "name": "Circus",
+      "url": "https://www.last.fm/music/Britney+Spears/_/Circus",
+      "duration": "192",
+      "@attr": {
+        "rank": "2"
+      },
+      "streamable": {
+        "#text": "0",
+        "fulltrack": "0"
+      },
+      "artist": {
+        "name": "Britney Spears",
+        "mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+        "url": "https://www.last.fm/music/Britney+Spears"
+      }
+    }, {
+      "name": "Out from Under",
+      "url": "https://www.last.fm/music/Britney+Spears/_/Out+from+Under",
+      "duration": "234",
+      "@attr": {
+        "rank": "3"
+      },
+      "streamable": {
+        "#text": "0",
+        "fulltrack": "0"
+      },
+      "artist": {
+        "name": "Britney Spears",
+        "mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+        "url": "https://www.last.fm/music/Britney+Spears"
+      }
+    }, {
+      "name": "Kill the Lights",
+      "url": "https://www.last.fm/music/Britney+Spears/_/Kill+the+Lights",
+      "duration": "239",
+      "@attr": {
+        "rank": "4"
+      },
+      "streamable": {
+        "#text": "0",
+        "fulltrack": "0"
+      },
+      "artist": {
+        "name": "Britney Spears",
+        "mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+        "url": "https://www.last.fm/music/Britney+Spears"
+      }
+    }, {
+      "name": "Shattered Glass",
+      "url": "https://www.last.fm/music/Britney+Spears/_/Shattered+Glass",
+      "duration": "173",
+      "@attr": {
+        "rank": "5"
+      },
+      "streamable": {
+        "#text": "0",
+        "fulltrack": "0"
+      },
+      "artist": {
+        "name": "Britney Spears",
+        "mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+        "url": "https://www.last.fm/music/Britney+Spears"
+      }
+    }, {
+      "name": "If U Seek Amy",
+      "url": "https://www.last.fm/music/Britney+Spears/_/If+U+Seek+Amy",
+      "duration": "217",
+      "@attr": {
+        "rank": "6"
+      },
+      "streamable": {
+        "#text": "0",
+        "fulltrack": "0"
+      },
+      "artist": {
+        "name": "Britney Spears",
+        "mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Unusual You",
+"url": "https://www.last.fm/music/Britney+Spears/_/Unusual+You",
+"duration": "261",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Blur",
+"url": "https://www.last.fm/music/Britney+Spears/_/Blur",
+"duration": "189",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Mmm Papi",
+"url": "https://www.last.fm/music/Britney+Spears/_/Mmm+Papi",
+"duration": "202",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Mannequin",
+"url": "https://www.last.fm/music/Britney+Spears/_/Mannequin",
+"duration": "247",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Lace and Leather",
+"url": "https://www.last.fm/music/Britney+Spears/_/Lace+and+Leather",
+"duration": "163",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "My Baby",
+"url": "https://www.last.fm/music/Britney+Spears/_/My+Baby",
+"duration": "200",
+"@attr": {
+"rank": "12"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Radar",
+"url": "https://www.last.fm/music/Britney+Spears/_/Radar",
+"duration": "229",
+"@attr": {
+"rank": "14"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Rock Me In",
+"url": "https://www.last.fm/music/Britney+Spears/_/Rock+Me+In",
+"duration": "198",
+"@attr": {
+"rank": "15"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Phonography",
+"url": "https://www.last.fm/music/Britney+Spears/_/Phonography",
+"duration": "214",
+"@attr": {
+"rank": "16"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "The Making Of The Circus Album",
+"url": "https://www.last.fm/music/Britney+Spears/_/The+Making+Of+The+Circus+Album",
+"duration": "574",
+"@attr": {
+"rank": "18"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Photo Gallery",
+"url": "https://www.last.fm/music/Britney+Spears/_/Photo+Gallery",
+"duration": "0",
+"@attr": {
+"rank": "20"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}]
+}]
+}, {
+"name": "Bubblegum Pop",
+"albums": [{
+"artist": "Madonna",
+"name": "Confessions on a Dance Floor",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/4c7abfa4d1ad6175a6fd529adb32991c.png",
+"songs": [{
+"name": "Hung Up",
+"url": "https://www.last.fm/music/Madonna/_/Hung+Up",
+"duration": "228",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Get Together",
+"url": "https://www.last.fm/music/Madonna/_/Get+Together",
+"duration": "330",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Sorry",
+"url": "https://www.last.fm/music/Madonna/_/Sorry",
+"duration": "283",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Future Lovers",
+"url": "https://www.last.fm/music/Madonna/_/Future+Lovers",
+"duration": "291",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "I Love New York",
+"url": "https://www.last.fm/music/Madonna/_/I+Love+New+York",
+"duration": "251",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Let It Will Be",
+"url": "https://www.last.fm/music/Madonna/_/Let+It+Will+Be",
+"duration": "258",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Forbidden Love",
+"url": "https://www.last.fm/music/Madonna/_/Forbidden+Love",
+"duration": "262",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Jump",
+"url": "https://www.last.fm/music/Madonna/_/Jump",
+"duration": "293",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "How High?",
+"url": "https://www.last.fm/music/Madonna/_/How+High%3F",
+"duration": "280",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Isaac",
+"url": "https://www.last.fm/music/Madonna/_/Isaac",
+"duration": "363",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Push",
+"url": "https://www.last.fm/music/Madonna/_/Push",
+"duration": "237",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Like It or Not",
+"url": "https://www.last.fm/music/Madonna/_/Like+It+or+Not",
+"duration": "272",
+"@attr": {
+"rank": "12"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}]
+}]
+}, {
+"name": "Cantopop",
+"albums": [{
+"artist": "Madonna",
+"name": "Like a Prayer",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/3246523fb957018cd5d0bbb08762267f.png",
+"songs": [{
+"name": "Like a Prayer",
+"url": "https://www.last.fm/music/Madonna/_/Like+a+Prayer",
+"duration": "351",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Express Yourself",
+"url": "https://www.last.fm/music/Madonna/_/Express+Yourself",
+"duration": "277",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Love Song",
+"url": "https://www.last.fm/music/Madonna/_/Love+Song",
+"duration": "292",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Till Death Do Us Part",
+"url": "https://www.last.fm/music/Madonna/_/Till+Death+Do+Us+Part",
+"duration": "316",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Promise to Try",
+"url": "https://www.last.fm/music/Madonna/_/Promise+to+Try",
+"duration": "218",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Cherish",
+"url": "https://www.last.fm/music/Madonna/_/Cherish",
+"duration": "247",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Dear Jessie",
+"url": "https://www.last.fm/music/Madonna/_/Dear+Jessie",
+"duration": "260",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Oh Father",
+"url": "https://www.last.fm/music/Madonna/_/Oh+Father",
+"duration": "297",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Keep It Together",
+"url": "https://www.last.fm/music/Madonna/_/Keep+It+Together",
+"duration": "303",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Spanish Eyes",
+"url": "https://www.last.fm/music/Madonna/_/Spanish+Eyes",
+"duration": "315",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}, {
+"name": "Act of Contrition",
+"url": "https://www.last.fm/music/Madonna/_/Act+of+Contrition",
+"duration": "139",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Madonna",
+"mbid": "79239441-bfd5-4981-a70c-55c3f15c1287",
+"url": "https://www.last.fm/music/Madonna"
+}
+}]
+}]
+}, {
+"name": "Christian Pop",
+"albums": [{
+"artist": "Britt Nicole",
+"name": "The Lost Get Found",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/bd662d6fa5f54a348495f02064e51fe7.png",
+"songs": [{
+"name": "The Lost Get Found",
+"url": "https://www.last.fm/music/Britt+Nicole/_/The+Lost+Get+Found",
+"duration": "204",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "How We Roll",
+"url": "https://www.last.fm/music/Britt+Nicole/_/How+We+Roll",
+"duration": "191",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "Safe",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Safe",
+"duration": "202",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "Hanging On",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Hanging+On",
+"duration": "200",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "Headphones",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Headphones",
+"duration": "203",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "Welcome To The Show",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Welcome+To+The+Show",
+"duration": "202",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "Walk On The Water",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Walk+On+The+Water",
+"duration": "230",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "Glow",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Glow",
+"duration": "181",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "Like A Star",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Like+A+Star",
+"duration": "233",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "Feel The Light",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Feel+The+Light",
+"duration": "217",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "Have Your Way",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Have+Your+Way",
+"duration": "219",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}]
+}, {
+"artist": "Britt Nicole",
+"name": "Say It",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/43c544806c4a2b77fb500097287ebcce.png",
+"songs": [{
+"name": "Holiday",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Holiday",
+"duration": "223",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "Believe",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Believe",
+"duration": "241",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "Set The World On Fire",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Set+The+World+On+Fire",
+"duration": "230",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "Sunshine Girl",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Sunshine+Girl",
+"duration": "244",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "Ready",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Ready",
+"duration": "218",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "You",
+"url": "https://www.last.fm/music/Britt+Nicole/_/You",
+"duration": "219",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "When She Cries",
+"url": "https://www.last.fm/music/Britt+Nicole/_/When+She+Cries",
+"duration": "193",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "Good Day",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Good+Day",
+"duration": "203",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "Don't Worry Now",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Don%27t+Worry+Now",
+"duration": "246",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "Say It",
+"url": "https://www.last.fm/music/Britt+Nicole/_/Say+It",
+"duration": "247",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}, {
+"name": "World That Breaks",
+"url": "https://www.last.fm/music/Britt+Nicole/_/World+That+Breaks",
+"duration": "202",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britt Nicole",
+"mbid": "9519eba5-d329-417e-b69a-9ebb2faffca4",
+"url": "https://www.last.fm/music/Britt+Nicole"
+}
+}]
+}]
+}, {
+"name": "Dance Pop",
+"albums": [{
+"artist": "Britney Spears",
+"name": "Greatest Hits: My Prerogative",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/a6f140f03afb46e29e2f91cdec48e1df.png",
+"songs": [{
+"name": "My Prerogative",
+"url": "https://www.last.fm/music/Britney+Spears/_/My+Prerogative",
+"duration": "213",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Toxic",
+"url": "https://www.last.fm/music/Britney+Spears/_/Toxic",
+"duration": "201",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "I'm a Slave 4 U",
+"url": "https://www.last.fm/music/Britney+Spears/_/I%27m+a+Slave+4+U",
+"duration": "203",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Oops!...I Did It Again",
+"url": "https://www.last.fm/music/Britney+Spears/_/Oops%21...I+Did+It+Again",
+"duration": "212",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Me Against the Music",
+"url": "https://www.last.fm/music/Britney+Spears/_/Me+Against+the+Music",
+"duration": "225",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Stronger",
+"url": "https://www.last.fm/music/Britney+Spears/_/Stronger",
+"duration": "203",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Everytime",
+"url": "https://www.last.fm/music/Britney+Spears/_/Everytime",
+"duration": "224",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "...Baby One More Time",
+"url": "https://www.last.fm/music/Britney+Spears/_/...Baby+One+More+Time",
+"duration": "210",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "(You Drive Me) Crazy - The Stop Remix!",
+"url": "https://www.last.fm/music/Britney+Spears/_/(You+Drive+Me)+Crazy+-+The+Stop+Remix%21",
+"duration": "196",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Boys (the Co-Ed Remix)",
+"url": "https://www.last.fm/music/Britney+Spears/_/Boys+(the+Co-Ed+Remix)",
+"duration": "227",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Sometimes",
+"url": "https://www.last.fm/music/Britney+Spears/_/Sometimes",
+"duration": "245",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Overprotected",
+"url": "https://www.last.fm/music/Britney+Spears/_/Overprotected",
+"duration": "187",
+"@attr": {
+"rank": "12"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Lucky",
+"url": "https://www.last.fm/music/Britney+Spears/_/Lucky",
+"duration": "205",
+"@attr": {
+"rank": "13"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Outrageous",
+"url": "https://www.last.fm/music/Britney+Spears/_/Outrageous",
+"duration": "209",
+"@attr": {
+"rank": "14"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Born to Make You Happy",
+"url": "https://www.last.fm/music/Britney+Spears/_/Born+to+Make+You+Happy",
+"duration": "245",
+"@attr": {
+"rank": "15"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "I Love Rock 'N' Roll",
+"url": "https://www.last.fm/music/Britney+Spears/_/I+Love+Rock+%27N%27+Roll",
+"duration": "188",
+"@attr": {
+"rank": "16"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "I'm Not A Girl....",
+"url": "https://www.last.fm/music/Britney+Spears/_/I%27m+Not+A+Girl....",
+"duration": "0",
+"@attr": {
+"rank": "17"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "i've just begun...",
+"url": "https://www.last.fm/music/Britney+Spears/_/i%27ve+just+begun...",
+"duration": "0",
+"@attr": {
+"rank": "18"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Do Somethin'",
+"url": "https://www.last.fm/music/Britney+Spears/_/Do+Somethin%27",
+"duration": "202",
+"@attr": {
+"rank": "19"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}]
+}, {
+"artist": "Britney Spears",
+"name": "Circus",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/d53a96f25a25a2f09a1c9b7bfdd7cdeb.png",
+"songs": [{
+"name": "Womanizer",
+"url": "https://www.last.fm/music/Britney+Spears/_/Womanizer",
+"duration": "224",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Circus",
+"url": "https://www.last.fm/music/Britney+Spears/_/Circus",
+"duration": "192",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Out from Under",
+"url": "https://www.last.fm/music/Britney+Spears/_/Out+from+Under",
+"duration": "234",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Kill the Lights",
+"url": "https://www.last.fm/music/Britney+Spears/_/Kill+the+Lights",
+"duration": "239",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Shattered Glass",
+"url": "https://www.last.fm/music/Britney+Spears/_/Shattered+Glass",
+"duration": "173",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "If U Seek Amy",
+"url": "https://www.last.fm/music/Britney+Spears/_/If+U+Seek+Amy",
+"duration": "217",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Unusual You",
+"url": "https://www.last.fm/music/Britney+Spears/_/Unusual+You",
+"duration": "261",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Blur",
+"url": "https://www.last.fm/music/Britney+Spears/_/Blur",
+"duration": "189",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Mmm Papi",
+"url": "https://www.last.fm/music/Britney+Spears/_/Mmm+Papi",
+"duration": "202",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Mannequin",
+"url": "https://www.last.fm/music/Britney+Spears/_/Mannequin",
+"duration": "247",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Lace and Leather",
+"url": "https://www.last.fm/music/Britney+Spears/_/Lace+and+Leather",
+"duration": "163",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "My Baby",
+"url": "https://www.last.fm/music/Britney+Spears/_/My+Baby",
+"duration": "200",
+"@attr": {
+"rank": "12"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Radar",
+"url": "https://www.last.fm/music/Britney+Spears/_/Radar",
+"duration": "229",
+"@attr": {
+"rank": "14"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Rock Me In",
+"url": "https://www.last.fm/music/Britney+Spears/_/Rock+Me+In",
+"duration": "198",
+"@attr": {
+"rank": "15"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Phonography",
+"url": "https://www.last.fm/music/Britney+Spears/_/Phonography",
+"duration": "214",
+"@attr": {
+"rank": "16"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "The Making Of The Circus Album",
+"url": "https://www.last.fm/music/Britney+Spears/_/The+Making+Of+The+Circus+Album",
+"duration": "574",
+"@attr": {
+"rank": "18"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}, {
+"name": "Photo Gallery",
+"url": "https://www.last.fm/music/Britney+Spears/_/Photo+Gallery",
+"duration": "0",
+"@attr": {
+"rank": "20"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Britney Spears",
+"mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76",
+"url": "https://www.last.fm/music/Britney+Spears"
+}
+}]
+}]
+}, {
+"name": "Electropop",
+"albums": [{
+"artist": "Lady Gaga",
+"name": "The Fame",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/1623ee43952b4e38ce4d0d66ec1267b0.png",
+"songs": [{
+"name": "Just Dance",
+"url": "https://www.last.fm/music/Lady+Gaga/_/Just+Dance",
+"duration": "242",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Lady Gaga",
+"mbid": "650e7db6-b795-4eb5-a702-5ea2fc46c848",
+"url": "https://www.last.fm/music/Lady+Gaga"
+}
+}, {
+"name": "LoveGame",
+"url": "https://www.last.fm/music/Lady+Gaga/_/LoveGame",
+"duration": "218",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Lady Gaga",
+"mbid": "650e7db6-b795-4eb5-a702-5ea2fc46c848",
+"url": "https://www.last.fm/music/Lady+Gaga"
+}
+}, {
+"name": "Paparazzi",
+"url": "https://www.last.fm/music/Lady+Gaga/_/Paparazzi",
+"duration": "245",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Lady Gaga",
+"mbid": "650e7db6-b795-4eb5-a702-5ea2fc46c848",
+"url": "https://www.last.fm/music/Lady+Gaga"
+}
+}, {
+"name": "Beautiful, Dirty, Rich",
+"url": "https://www.last.fm/music/Lady+Gaga/_/Beautiful,+Dirty,+Rich",
+"duration": "173",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Lady Gaga",
+"mbid": "650e7db6-b795-4eb5-a702-5ea2fc46c848",
+"url": "https://www.last.fm/music/Lady+Gaga"
+}
+}, {
+"name": "Eh, Eh (Nothing Else I Can Say)",
+"url": "https://www.last.fm/music/Lady+Gaga/_/Eh,+Eh+(Nothing+Else+I+Can+Say)",
+"duration": "177",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Lady Gaga",
+"mbid": "650e7db6-b795-4eb5-a702-5ea2fc46c848",
+"url": "https://www.last.fm/music/Lady+Gaga"
+}
+}, {
+"name": "Poker Face",
+"url": "https://www.last.fm/music/Lady+Gaga/_/Poker+Face",
+"duration": "237",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Lady Gaga",
+"mbid": "650e7db6-b795-4eb5-a702-5ea2fc46c848",
+"url": "https://www.last.fm/music/Lady+Gaga"
+}
+}, {
+"name": "The Fame",
+"url": "https://www.last.fm/music/Lady+Gaga/_/The+Fame",
+"duration": "222",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Lady Gaga",
+"mbid": "650e7db6-b795-4eb5-a702-5ea2fc46c848",
+"url": "https://www.last.fm/music/Lady+Gaga"
+}
+}, {
+"name": "Money Honey",
+"url": "https://www.last.fm/music/Lady+Gaga/_/Money+Honey",
+"duration": "172",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Lady Gaga",
+"mbid": "650e7db6-b795-4eb5-a702-5ea2fc46c848",
+"url": "https://www.last.fm/music/Lady+Gaga"
+}
+}, {
+"name": "Again Again",
+"url": "https://www.last.fm/music/Lady+Gaga/_/Again+Again",
+"duration": "188",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Lady Gaga",
+"mbid": "650e7db6-b795-4eb5-a702-5ea2fc46c848",
+"url": "https://www.last.fm/music/Lady+Gaga"
+}
+}, {
+"name": "Boys Boys Boys",
+"url": "https://www.last.fm/music/Lady+Gaga/_/Boys+Boys+Boys",
+"duration": "202",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Lady Gaga",
+"mbid": "650e7db6-b795-4eb5-a702-5ea2fc46c848",
+"url": "https://www.last.fm/music/Lady+Gaga"
+}
+}, {
+"name": "Brown Eyes",
+"url": "https://www.last.fm/music/Lady+Gaga/_/Brown+Eyes",
+"duration": "245",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Lady Gaga",
+"mbid": "650e7db6-b795-4eb5-a702-5ea2fc46c848",
+"url": "https://www.last.fm/music/Lady+Gaga"
+}
+}, {
+"name": "Summerboy",
+"url": "https://www.last.fm/music/Lady+Gaga/_/Summerboy",
+"duration": "255",
+"@attr": {
+"rank": "12"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Lady Gaga",
+"mbid": "650e7db6-b795-4eb5-a702-5ea2fc46c848",
+"url": "https://www.last.fm/music/Lady+Gaga"
+}
+}]
+}]
+}, {
+"name": "Europop",
+"albums": [{
+"artist": "R.E.M.",
+"name": "In Time: The Best of R.E.M. 1988-2003",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/9df651da26314116c1d83370260348ab.png",
+"songs": [{
+"name": "Man on the Moon",
+"url": "https://www.last.fm/music/R.E.M./_/Man+on+the+Moon",
+"duration": "313",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "The Great Beyond",
+"url": "https://www.last.fm/music/R.E.M./_/The+Great+Beyond",
+"duration": "322",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "Bad Day",
+"url": "https://www.last.fm/music/R.E.M./_/Bad+Day",
+"duration": "247",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "What's the Frequency, Kenneth?",
+"url": "https://www.last.fm/music/R.E.M./_/What%27s+the+Frequency,+Kenneth%3F",
+"duration": "239",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "All the Way to Reno",
+"url": "https://www.last.fm/music/R.E.M./_/All+the+Way+to+Reno",
+"duration": "285",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "Losing My Religion",
+"url": "https://www.last.fm/music/R.E.M./_/Losing+My+Religion",
+"duration": "266",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "E-bow the Letter",
+"url": "https://www.last.fm/music/R.E.M./_/E-bow+the+Letter",
+"duration": "324",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "Orange Crush",
+"url": "https://www.last.fm/music/R.E.M./_/Orange+Crush",
+"duration": "230",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "Imitation of Life",
+"url": "https://www.last.fm/music/R.E.M./_/Imitation+of+Life",
+"duration": "237",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "Daysleeper",
+"url": "https://www.last.fm/music/R.E.M./_/Daysleeper",
+"duration": "219",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "Animal",
+"url": "https://www.last.fm/music/R.E.M./_/Animal",
+"duration": "242",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "The Sidewinder Sleeps Tonite",
+"url": "https://www.last.fm/music/R.E.M./_/The+Sidewinder+Sleeps+Tonite",
+"duration": "246",
+"@attr": {
+"rank": "12"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "Stand",
+"url": "https://www.last.fm/music/R.E.M./_/Stand",
+"duration": "190",
+"@attr": {
+"rank": "13"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "Electrolite",
+"url": "https://www.last.fm/music/R.E.M./_/Electrolite",
+"duration": "245",
+"@attr": {
+"rank": "14"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "All the Right Friends",
+"url": "https://www.last.fm/music/R.E.M./_/All+the+Right+Friends",
+"duration": "168",
+"@attr": {
+"rank": "15"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "Everybody Hurts",
+"url": "https://www.last.fm/music/R.E.M./_/Everybody+Hurts",
+"duration": "317",
+"@attr": {
+"rank": "16"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "At My Most Beautiful",
+"url": "https://www.last.fm/music/R.E.M./_/At+My+Most+Beautiful",
+"duration": "216",
+"@attr": {
+"rank": "17"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}, {
+"name": "Nightswimming",
+"url": "https://www.last.fm/music/R.E.M./_/Nightswimming",
+"duration": "256",
+"@attr": {
+"rank": "18"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "R.E.M.",
+"mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+"url": "https://www.last.fm/music/R.E.M."
+}
+}]
+}, {
+"artist": "Queen",
+"name": "The Game",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/8230c6b8c53141c6afc03754427fb7b8.png",
+"songs": [{
+"name": "Play the Game",
+"url": "https://www.last.fm/music/Queen/_/Play+the+Game",
+"duration": "208",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Dragon Attack",
+"url": "https://www.last.fm/music/Queen/_/Dragon+Attack",
+"duration": "253",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Another One Bites the Dust",
+"url": "https://www.last.fm/music/Queen/_/Another+One+Bites+the+Dust",
+"duration": "213",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Need Your Loving Tonight",
+"url": "https://www.last.fm/music/Queen/_/Need+Your+Loving+Tonight",
+"duration": "168",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Crazy Little Thing Called Love",
+"url": "https://www.last.fm/music/Queen/_/Crazy+Little+Thing+Called+Love",
+"duration": "161",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Rock It (Prime Jive)",
+"url": "https://www.last.fm/music/Queen/_/Rock+It+(Prime+Jive)",
+"duration": "271",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Don't Try Suicide",
+"url": "https://www.last.fm/music/Queen/_/Don%27t+Try+Suicide",
+"duration": "232",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Sail Away Sweet Sister",
+"url": "https://www.last.fm/music/Queen/_/Sail+Away+Sweet+Sister",
+"duration": "212",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Coming Soon",
+"url": "https://www.last.fm/music/Queen/_/Coming+Soon",
+"duration": "170",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Save Me",
+"url": "https://www.last.fm/music/Queen/_/Save+Me",
+"duration": "228",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}]
+}, {
+"artist": "Queen",
+"name": "Greatest Hits",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/d6d901b17eba4104c178dd7f29920f41.png",
+"songs": [{
+"name": "Bohemian Rhapsody",
+"url": "https://www.last.fm/music/Queen/_/Bohemian+Rhapsody",
+"duration": "353",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Another One Bites the Dust",
+"url": "https://www.last.fm/music/Queen/_/Another+One+Bites+the+Dust",
+"duration": "213",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Killer Queen",
+"url": "https://www.last.fm/music/Queen/_/Killer+Queen",
+"duration": "180",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Fat Bottomed Girls",
+"url": "https://www.last.fm/music/Queen/_/Fat+Bottomed+Girls",
+"duration": "202",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Bicycle Race",
+"url": "https://www.last.fm/music/Queen/_/Bicycle+Race",
+"duration": "183",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "You're My Best Friend",
+"url": "https://www.last.fm/music/Queen/_/You%27re+My+Best+Friend",
+"duration": "170",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Don't Stop Me Now",
+"url": "https://www.last.fm/music/Queen/_/Don%27t+Stop+Me+Now",
+"duration": "209",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Save Me",
+"url": "https://www.last.fm/music/Queen/_/Save+Me",
+"duration": "228",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Crazy Little Thing Called Love",
+"url": "https://www.last.fm/music/Queen/_/Crazy+Little+Thing+Called+Love",
+"duration": "161",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Somebody to Love",
+"url": "https://www.last.fm/music/Queen/_/Somebody+to+Love",
+"duration": "293",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Now I'm Here",
+"url": "https://www.last.fm/music/Queen/_/Now+I%27m+Here",
+"duration": "282",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Good Old-Fashioned Lover Boy",
+"url": "https://www.last.fm/music/Queen/_/Good+Old-Fashioned+Lover+Boy",
+"duration": "167",
+"@attr": {
+"rank": "12"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Play the Game",
+"url": "https://www.last.fm/music/Queen/_/Play+the+Game",
+"duration": "208",
+"@attr": {
+"rank": "13"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Flash",
+"url": "https://www.last.fm/music/Queen/_/Flash",
+"duration": "167",
+"@attr": {
+"rank": "14"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Seven Seas of Rhye",
+"url": "https://www.last.fm/music/Queen/_/Seven+Seas+of+Rhye",
+"duration": "166",
+"@attr": {
+"rank": "15"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "We Will Rock You",
+"url": "https://www.last.fm/music/Queen/_/We+Will+Rock+You",
+"duration": "121",
+"@attr": {
+"rank": "16"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "We Are the Champions",
+"url": "https://www.last.fm/music/Queen/_/We+Are+the+Champions",
+"duration": "245",
+"@attr": {
+"rank": "17"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}]
+}, {
+"artist": "Queen",
+"name": "Made In Heaven",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/3c32fca5ea6c4788959ee4f7013c6fd6.png",
+"songs": [{
+"name": "It's a Beautiful Day",
+"url": "https://www.last.fm/music/Queen/_/It%27s+a+Beautiful+Day",
+"duration": "153",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Made in Heaven",
+"url": "https://www.last.fm/music/Queen/_/Made+in+Heaven",
+"duration": "325",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Let Me Live",
+"url": "https://www.last.fm/music/Queen/_/Let+Me+Live",
+"duration": "285",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Mother Love",
+"url": "https://www.last.fm/music/Queen/_/Mother+Love",
+"duration": "289",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "My Life Has Been Saved",
+"url": "https://www.last.fm/music/Queen/_/My+Life+Has+Been+Saved",
+"duration": "195",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "I Was Born to Love You",
+"url": "https://www.last.fm/music/Queen/_/I+Was+Born+to+Love+You",
+"duration": "290",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Heaven for Everyone",
+"url": "https://www.last.fm/music/Queen/_/Heaven+for+Everyone",
+"duration": "277",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Too Much Love Will Kill You",
+"url": "https://www.last.fm/music/Queen/_/Too+Much+Love+Will+Kill+You",
+"duration": "260",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "You Don't Fool Me",
+"url": "https://www.last.fm/music/Queen/_/You+Don%27t+Fool+Me",
+"duration": "322",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "A Winter's Tale",
+"url": "https://www.last.fm/music/Queen/_/A+Winter%27s+Tale",
+"duration": "229",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "It's a Beautiful Day (reprise)",
+"url": "https://www.last.fm/music/Queen/_/It%27s+a+Beautiful+Day+(reprise)",
+"duration": "181",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Yeah",
+"url": "https://www.last.fm/music/Queen/_/Yeah",
+"duration": "4",
+"@attr": {
+"rank": "12"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}, {
+"name": "Untitled",
+"url": "https://www.last.fm/music/Queen/_/Untitled",
+"duration": "4",
+"@attr": {
+"rank": "13"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Queen",
+"mbid": "420ca290-76c5-41af-999e-564d7c71f1a7",
+"url": "https://www.last.fm/music/Queen"
+}
+}]
+}]
+}, {
+"name": "K-pop",
+"albums": [{
+"artist": "WJSN",
+"name": "The Secret",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/5e356e7d1c8aab670a9d4fc6b48dfa60.png",
+"songs": [{
+"name": "Secret",
+"url": "https://www.last.fm/music/WJSN/_/Secret",
+"duration": "223",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "WJSN",
+"url": "https://www.last.fm/music/WJSN"
+}
+}, {
+"name": "BeBe",
+"url": "https://www.last.fm/music/WJSN/_/BeBe",
+"duration": "198",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "WJSN",
+"url": "https://www.last.fm/music/WJSN"
+}
+}, {
+"name": "Would You Kiss Me?",
+"url": "https://www.last.fm/music/WJSN/_/Would+You+Kiss+Me%3F",
+"duration": "217",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "WJSN",
+"url": "https://www.last.fm/music/WJSN"
+}
+}, {
+"name": "Prince",
+"url": "https://www.last.fm/music/WJSN/_/Prince",
+"duration": "201",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "WJSN",
+"url": "https://www.last.fm/music/WJSN"
+}
+}, {
+"name": "ROBOT",
+"url": "https://www.last.fm/music/WJSN/_/ROBOT",
+"duration": "219",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "WJSN",
+"url": "https://www.last.fm/music/WJSN"
+}
+}, {
+"name": "Good Night",
+"url": "https://www.last.fm/music/WJSN/_/Good+Night",
+"duration": "213",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "WJSN",
+"url": "https://www.last.fm/music/WJSN"
+}
+}, {
+"name": "Secret (Chinese Ver.)",
+"url": "https://www.last.fm/music/WJSN/_/Secret+(Chinese+Ver.)",
+"duration": "223",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "WJSN",
+"url": "https://www.last.fm/music/WJSN"
+}
+}]
+}, {
+"artist": "WJSN",
+"name": "Would You Like?",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/6ae165b0bd153e0a7b99577f7b3fc0a0.png",
+"songs": [{
+"name": "Space Cowgirl",
+"url": "https://www.last.fm/music/WJSN/_/Space+Cowgirl",
+"duration": "71",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "WJSN",
+"url": "https://www.last.fm/music/WJSN"
+}
+}, {
+"name": "MoMoMo",
+"url": "https://www.last.fm/music/WJSN/_/MoMoMo",
+"duration": "222",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "WJSN",
+"url": "https://www.last.fm/music/WJSN"
+}
+}, {
+"name": "Catch Me",
+"url": "https://www.last.fm/music/WJSN/_/Catch+Me",
+"duration": "194",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "WJSN",
+"url": "https://www.last.fm/music/WJSN"
+}
+}, {
+"name": "Tick-Tock",
+"url": "https://www.last.fm/music/WJSN/_/Tick-Tock",
+"duration": "208",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "WJSN",
+"url": "https://www.last.fm/music/WJSN"
+}
+}, {
+"name": "Take My Breath",
+"url": "https://www.last.fm/music/WJSN/_/Take+My+Breath",
+"duration": "224",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "WJSN",
+"url": "https://www.last.fm/music/WJSN"
+}
+}, {
+"name": "MoMoMo (Chinese Ver.)",
+"url": "https://www.last.fm/music/WJSN/_/MoMoMo+(Chinese+Ver.)",
+"duration": "222",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "WJSN",
+"url": "https://www.last.fm/music/WJSN"
+}
+}]
+}]
+}, {
+"name": "Operatic Pop",
+"albums": [{
+"artist": "Twenty One Pilots",
+"name": "Blurryface",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/2c55917f6745edeb05857a8818e99cc8.png",
+"songs": [{
+"name": "Heavydirtysoul",
+"url": "https://www.last.fm/music/Twenty+One+Pilots/_/Heavydirtysoul",
+"duration": "235",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Twenty One Pilots",
+"mbid": "a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+"url": "https://www.last.fm/music/Twenty+One+Pilots"
+}
+}, {
+"name": "Stressed Out",
+"url": "https://www.last.fm/music/Twenty+One+Pilots/_/Stressed+Out",
+"duration": "202",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Twenty One Pilots",
+"mbid": "a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+"url": "https://www.last.fm/music/Twenty+One+Pilots"
+}
+}, {
+"name": "Ride",
+"url": "https://www.last.fm/music/Twenty+One+Pilots/_/Ride",
+"duration": "215",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Twenty One Pilots",
+"mbid": "a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+"url": "https://www.last.fm/music/Twenty+One+Pilots"
+}
+}, {
+"name": "Fairly Local",
+"url": "https://www.last.fm/music/Twenty+One+Pilots/_/Fairly+Local",
+"duration": "207",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Twenty One Pilots",
+"mbid": "a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+"url": "https://www.last.fm/music/Twenty+One+Pilots"
+}
+}, {
+"name": "Tear in My Heart",
+"url": "https://www.last.fm/music/Twenty+One+Pilots/_/Tear+in+My+Heart",
+"duration": "189",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Twenty One Pilots",
+"mbid": "a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+"url": "https://www.last.fm/music/Twenty+One+Pilots"
+}
+}, {
+"name": "Lane Boy",
+"url": "https://www.last.fm/music/Twenty+One+Pilots/_/Lane+Boy",
+"duration": "253",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Twenty One Pilots",
+"mbid": "a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+"url": "https://www.last.fm/music/Twenty+One+Pilots"
+}
+}, {
+"name": "The Judge",
+"url": "https://www.last.fm/music/Twenty+One+Pilots/_/The+Judge",
+"duration": "298",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Twenty One Pilots",
+"mbid": "a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+"url": "https://www.last.fm/music/Twenty+One+Pilots"
+}
+}, {
+"name": "Doubt",
+"url": "https://www.last.fm/music/Twenty+One+Pilots/_/Doubt",
+"duration": "192",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Twenty One Pilots",
+"mbid": "a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+"url": "https://www.last.fm/music/Twenty+One+Pilots"
+}
+}, {
+"name": "Polarize",
+"url": "https://www.last.fm/music/Twenty+One+Pilots/_/Polarize",
+"duration": "227",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Twenty One Pilots",
+"mbid": "a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+"url": "https://www.last.fm/music/Twenty+One+Pilots"
+}
+}, {
+"name": "We Don't Believe What's on TV",
+"url": "https://www.last.fm/music/Twenty+One+Pilots/_/We+Don%27t+Believe+What%27s+on+TV",
+"duration": "177",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Twenty One Pilots",
+"mbid": "a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+"url": "https://www.last.fm/music/Twenty+One+Pilots"
+}
+}, {
+"name": "Message Man",
+"url": "https://www.last.fm/music/Twenty+One+Pilots/_/Message+Man",
+"duration": "240",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Twenty One Pilots",
+"mbid": "a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+"url": "https://www.last.fm/music/Twenty+One+Pilots"
+}
+}, {
+"name": "Hometown",
+"url": "https://www.last.fm/music/Twenty+One+Pilots/_/Hometown",
+"duration": "235",
+"@attr": {
+"rank": "12"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Twenty One Pilots",
+"mbid": "a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+"url": "https://www.last.fm/music/Twenty+One+Pilots"
+}
+}, {
+"name": "Not Today",
+"url": "https://www.last.fm/music/Twenty+One+Pilots/_/Not+Today",
+"duration": "238",
+"@attr": {
+"rank": "13"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Twenty One Pilots",
+"mbid": "a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+"url": "https://www.last.fm/music/Twenty+One+Pilots"
+}
+}, {
+"name": "Goner",
+"url": "https://www.last.fm/music/Twenty+One+Pilots/_/Goner",
+"duration": "237",
+"@attr": {
+"rank": "14"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Twenty One Pilots",
+"mbid": "a6c6897a-7415-4f8d-b5a5-3a5e05f3be67",
+"url": "https://www.last.fm/music/Twenty+One+Pilots"
+}
+}]
+}, {
+"artist": "Muse",
+"name": "Black Holes and Revelations",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/6f640d26c679da73f205958ab5cda943.png",
+"songs": [{
+"name": "Take a Bow",
+"url": "https://www.last.fm/music/Muse/_/Take+a+Bow",
+"duration": "275",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Muse",
+"mbid": "fd857293-5ab8-40de-b29e-55a69d4e4d0f",
+"url": "https://www.last.fm/music/Muse"
+}
+}, {
+"name": "Starlight",
+"url": "https://www.last.fm/music/Muse/_/Starlight",
+"duration": "239",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Muse",
+"mbid": "fd857293-5ab8-40de-b29e-55a69d4e4d0f",
+"url": "https://www.last.fm/music/Muse"
+}
+}, {
+"name": "Supermassive Black Hole",
+"url": "https://www.last.fm/music/Muse/_/Supermassive+Black+Hole",
+"duration": "245",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Muse",
+"mbid": "fd857293-5ab8-40de-b29e-55a69d4e4d0f",
+"url": "https://www.last.fm/music/Muse"
+}
+}, {
+"name": "Map of the Problematique",
+"url": "https://www.last.fm/music/Muse/_/Map+of+the+Problematique",
+"duration": "258",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Muse",
+"mbid": "fd857293-5ab8-40de-b29e-55a69d4e4d0f",
+"url": "https://www.last.fm/music/Muse"
+}
+}, {
+"name": "Soldier's Poem",
+"url": "https://www.last.fm/music/Muse/_/Soldier%27s+Poem",
+"duration": "124",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Muse",
+"mbid": "fd857293-5ab8-40de-b29e-55a69d4e4d0f",
+"url": "https://www.last.fm/music/Muse"
+}
+}, {
+"name": "Invincible",
+"url": "https://www.last.fm/music/Muse/_/Invincible",
+"duration": "300",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Muse",
+"mbid": "fd857293-5ab8-40de-b29e-55a69d4e4d0f",
+"url": "https://www.last.fm/music/Muse"
+}
+}, {
+"name": "Assassin",
+"url": "https://www.last.fm/music/Muse/_/Assassin",
+"duration": "211",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Muse",
+"mbid": "fd857293-5ab8-40de-b29e-55a69d4e4d0f",
+"url": "https://www.last.fm/music/Muse"
+}
+}, {
+"name": "Exo-Politics",
+"url": "https://www.last.fm/music/Muse/_/Exo-Politics",
+"duration": "233",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Muse",
+"mbid": "fd857293-5ab8-40de-b29e-55a69d4e4d0f",
+"url": "https://www.last.fm/music/Muse"
+}
+}, {
+"name": "City of Delusion",
+"url": "https://www.last.fm/music/Muse/_/City+of+Delusion",
+"duration": "288",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Muse",
+"mbid": "fd857293-5ab8-40de-b29e-55a69d4e4d0f",
+"url": "https://www.last.fm/music/Muse"
+}
+}, {
+"name": "Hoodoo",
+"url": "https://www.last.fm/music/Muse/_/Hoodoo",
+"duration": "223",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Muse",
+"mbid": "fd857293-5ab8-40de-b29e-55a69d4e4d0f",
+"url": "https://www.last.fm/music/Muse"
+}
+}, {
+"name": "Knights of Cydonia",
+"url": "https://www.last.fm/music/Muse/_/Knights+of+Cydonia",
+"duration": "367",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Muse",
+"mbid": "fd857293-5ab8-40de-b29e-55a69d4e4d0f",
+"url": "https://www.last.fm/music/Muse"
+}
+}]
+}]
+}, {
+"name": "Progressive Pop",
+"albums": [{
+"artist": "Linkin Park",
+"name": "A Thousand Suns",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/e54e0c4fda7944e78db9c323c855f1ae.png",
+"songs": [{
+"name": "The Requiem",
+"url": "https://www.last.fm/music/Linkin+Park/_/The+Requiem",
+"duration": "121",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Linkin Park",
+"mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419",
+"url": "https://www.last.fm/music/Linkin+Park"
+}
+}, {
+"name": "The Radiance",
+"url": "https://www.last.fm/music/Linkin+Park/_/The+Radiance",
+"duration": "58",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Linkin Park",
+"mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419",
+"url": "https://www.last.fm/music/Linkin+Park"
+}
+}, {
+"name": "Burning in the Skies",
+"url": "https://www.last.fm/music/Linkin+Park/_/Burning+in+the+Skies",
+"duration": "253",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Linkin Park",
+"mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419",
+"url": "https://www.last.fm/music/Linkin+Park"
+}
+}, {
+"name": "Empty Spaces",
+"url": "https://www.last.fm/music/Linkin+Park/_/Empty+Spaces",
+"duration": "18",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Linkin Park",
+"mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419",
+"url": "https://www.last.fm/music/Linkin+Park"
+}
+}, {
+"name": "When They Come for Me",
+"url": "https://www.last.fm/music/Linkin+Park/_/When+They+Come+for+Me",
+"duration": "296",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Linkin Park",
+"mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419",
+"url": "https://www.last.fm/music/Linkin+Park"
+}
+}, {
+"name": "Robot Boy",
+"url": "https://www.last.fm/music/Linkin+Park/_/Robot+Boy",
+"duration": "266",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Linkin Park",
+"mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419",
+"url": "https://www.last.fm/music/Linkin+Park"
+}
+}, {
+"name": "Jornada del Muerto",
+"url": "https://www.last.fm/music/Linkin+Park/_/Jornada+del+Muerto",
+"duration": "95",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Linkin Park",
+"mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419",
+"url": "https://www.last.fm/music/Linkin+Park"
+}
+}, {
+"name": "Waiting for the End",
+"url": "https://www.last.fm/music/Linkin+Park/_/Waiting+for+the+End",
+"duration": "232",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Linkin Park",
+"mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419",
+"url": "https://www.last.fm/music/Linkin+Park"
+}
+}, {
+"name": "Blackout",
+"url": "https://www.last.fm/music/Linkin+Park/_/Blackout",
+"duration": "279",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Linkin Park",
+"mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419",
+"url": "https://www.last.fm/music/Linkin+Park"
+}
+}, {
+"name": "Wretches and Kings",
+"url": "https://www.last.fm/music/Linkin+Park/_/Wretches+and+Kings",
+"duration": "255",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Linkin Park",
+"mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419",
+"url": "https://www.last.fm/music/Linkin+Park"
+}
+}, {
+"name": "Wisdom, Justice, and Love",
+"url": "https://www.last.fm/music/Linkin+Park/_/Wisdom,+Justice,+and+Love",
+"duration": "99",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Linkin Park",
+"mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419",
+"url": "https://www.last.fm/music/Linkin+Park"
+}
+}, {
+"name": "Iridescent",
+"url": "https://www.last.fm/music/Linkin+Park/_/Iridescent",
+"duration": "239",
+"@attr": {
+"rank": "12"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Linkin Park",
+"mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419",
+"url": "https://www.last.fm/music/Linkin+Park"
+}
+}, {
+"name": "Fallout",
+"url": "https://www.last.fm/music/Linkin+Park/_/Fallout",
+"duration": "83",
+"@attr": {
+"rank": "13"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Linkin Park",
+"mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419",
+"url": "https://www.last.fm/music/Linkin+Park"
+}
+}, {
+"name": "The Catalyst",
+"url": "https://www.last.fm/music/Linkin+Park/_/The+Catalyst",
+"duration": "340",
+"@attr": {
+"rank": "14"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Linkin Park",
+"mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419",
+"url": "https://www.last.fm/music/Linkin+Park"
+}
+}, {
+"name": "The Messenger",
+"url": "https://www.last.fm/music/Linkin+Park/_/The+Messenger",
+"duration": "184",
+"@attr": {
+"rank": "15"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Linkin Park",
+"mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419",
+"url": "https://www.last.fm/music/Linkin+Park"
+}
+}]
+}]
+}, {
+"name": "Sophisti-pop",
+"albums": [{
+"artist": "Maroon 5",
+"name": "Songs About Jane",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/bbf019744c23450f80c16a492c6917e0.png",
+"songs": [{
+"name": "Harder to Breathe",
+"url": "https://www.last.fm/music/Maroon+5/_/Harder+to+Breathe",
+"duration": "173",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Maroon 5",
+"mbid": "0ab49580-c84f-44d4-875f-d83760ea2cfe",
+"url": "https://www.last.fm/music/Maroon+5"
+}
+}, {
+"name": "This Love",
+"url": "https://www.last.fm/music/Maroon+5/_/This+Love",
+"duration": "206",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Maroon 5",
+"mbid": "0ab49580-c84f-44d4-875f-d83760ea2cfe",
+"url": "https://www.last.fm/music/Maroon+5"
+}
+}, {
+"name": "Shiver",
+"url": "https://www.last.fm/music/Maroon+5/_/Shiver",
+"duration": "179",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Maroon 5",
+"mbid": "0ab49580-c84f-44d4-875f-d83760ea2cfe",
+"url": "https://www.last.fm/music/Maroon+5"
+}
+}, {
+"name": "She Will Be Loved",
+"url": "https://www.last.fm/music/Maroon+5/_/She+Will+Be+Loved",
+"duration": "257",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Maroon 5",
+"mbid": "0ab49580-c84f-44d4-875f-d83760ea2cfe",
+"url": "https://www.last.fm/music/Maroon+5"
+}
+}, {
+"name": "Tangled",
+"url": "https://www.last.fm/music/Maroon+5/_/Tangled",
+"duration": "198",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Maroon 5",
+"mbid": "0ab49580-c84f-44d4-875f-d83760ea2cfe",
+"url": "https://www.last.fm/music/Maroon+5"
+}
+}, {
+"name": "The Sun",
+"url": "https://www.last.fm/music/Maroon+5/_/The+Sun",
+"duration": "251",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Maroon 5",
+"mbid": "0ab49580-c84f-44d4-875f-d83760ea2cfe",
+"url": "https://www.last.fm/music/Maroon+5"
+}
+}, {
+"name": "Must Get Out",
+"url": "https://www.last.fm/music/Maroon+5/_/Must+Get+Out",
+"duration": "239",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Maroon 5",
+"mbid": "0ab49580-c84f-44d4-875f-d83760ea2cfe",
+"url": "https://www.last.fm/music/Maroon+5"
+}
+}, {
+"name": "Sunday Morning",
+"url": "https://www.last.fm/music/Maroon+5/_/Sunday+Morning",
+"duration": "246",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Maroon 5",
+"mbid": "0ab49580-c84f-44d4-875f-d83760ea2cfe",
+"url": "https://www.last.fm/music/Maroon+5"
+}
+}, {
+"name": "Secret",
+"url": "https://www.last.fm/music/Maroon+5/_/Secret",
+"duration": "295",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Maroon 5",
+"mbid": "0ab49580-c84f-44d4-875f-d83760ea2cfe",
+"url": "https://www.last.fm/music/Maroon+5"
+}
+}, {
+"name": "Through with You",
+"url": "https://www.last.fm/music/Maroon+5/_/Through+with+You",
+"duration": "181",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Maroon 5",
+"mbid": "0ab49580-c84f-44d4-875f-d83760ea2cfe",
+"url": "https://www.last.fm/music/Maroon+5"
+}
+}, {
+"name": "Not Coming Home",
+"url": "https://www.last.fm/music/Maroon+5/_/Not+Coming+Home",
+"duration": "261",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Maroon 5",
+"mbid": "0ab49580-c84f-44d4-875f-d83760ea2cfe",
+"url": "https://www.last.fm/music/Maroon+5"
+}
+}, {
+"name": "Sweetest Goodbye",
+"url": "https://www.last.fm/music/Maroon+5/_/Sweetest+Goodbye",
+"duration": "270",
+"@attr": {
+"rank": "12"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Maroon 5",
+"mbid": "0ab49580-c84f-44d4-875f-d83760ea2cfe",
+"url": "https://www.last.fm/music/Maroon+5"
+}
+}]
+}]
+}, {
+"name": "Synth-pop",
+"albums": [{
+"artist": "Men Without Hats",
+"name": "Rhythm of Youth",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/659ab743d4b547a5c721c99d9631bfa0.png",
+"songs": [{
+"name": "Ban The Game",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/Ban+The+Game",
+"duration": "48",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "Living in China",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/Living+in+China",
+"duration": "184",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "The Great Ones Remember",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/The+Great+Ones+Remember",
+"duration": "379",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "I Got the Message",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/I+Got+the+Message",
+"duration": "284",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "Cocoricci (Le tango des voleurs)",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/Cocoricci+(Le+tango+des+voleurs)",
+"duration": "204",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "The Safety Dance",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/The+Safety+Dance",
+"duration": "275",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "Ideas for Walls",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/Ideas+for+Walls",
+"duration": "179",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "Things in My Life",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/Things+in+My+Life",
+"duration": "296",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "I Like",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/I+Like",
+"duration": "259",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "The Great Ones Remember",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/The+Great+Ones+Remember",
+"duration": "379",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}]
+}, {
+"artist": "Men Without Hats",
+"name": "Pop Goes the World",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/2a780d75fdea9ae434aa9af514901d98.png",
+"songs": [{
+"name": "Intro",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/Intro",
+"duration": "109",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "Pop Goes the World",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/Pop+Goes+the+World",
+"duration": "223",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "On Tuesday",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/On+Tuesday",
+"duration": "248",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "Bright Side of the Sun",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/Bright+Side+of+the+Sun",
+"duration": "42",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "O Sole Mio",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/O+Sole+Mio",
+"duration": "237",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "Lose My Way",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/Lose+My+Way",
+"duration": "190",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "The Real World",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/The+Real+World",
+"duration": "264",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "Moonbeam",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/Moonbeam",
+"duration": "217",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "In The Name of Angels",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/In+The+Name+of+Angels",
+"duration": "229",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "La valse d'Eugénie",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/La+valse+d%27Eug%C3%A9nie",
+"duration": "88",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "Jenny Wore Black",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/Jenny+Wore+Black",
+"duration": "177",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "Intro / Walk on Water",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/Intro+%2F+Walk+on+Water",
+"duration": "343",
+"@attr": {
+"rank": "12"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}, {
+"name": "The End (of the World)",
+"url": "https://www.last.fm/music/Men+Without+Hats/_/The+End+(of+the+World)",
+"duration": "203",
+"@attr": {
+"rank": "13"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Men Without Hats",
+"mbid": "bcabb743-60ed-406b-94da-9bf82e032e58",
+"url": "https://www.last.fm/music/Men+Without+Hats"
+}
+}]
+}]
+}, {
+"name": "Space age Pop",
+"albums": [{
+"artist": "One Direction",
+"name": "Up All Night",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/19b1348438db46bb94eb92dc96d54a11.png",
+"songs": [{
+"name": "What Makes You Beautiful",
+"url": "https://www.last.fm/music/One+Direction/_/What+Makes+You+Beautiful",
+"duration": "200",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "One Direction",
+"mbid": "3fedf601-0039-4ba4-af53-7b6d1ff5b69a",
+"url": "https://www.last.fm/music/One+Direction"
+}
+}, {
+"name": "Gotta Be You",
+"url": "https://www.last.fm/music/One+Direction/_/Gotta+Be+You",
+"duration": "244",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "One Direction",
+"mbid": "3fedf601-0039-4ba4-af53-7b6d1ff5b69a",
+"url": "https://www.last.fm/music/One+Direction"
+}
+}, {
+"name": "One Thing",
+"url": "https://www.last.fm/music/One+Direction/_/One+Thing",
+"duration": "197",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "One Direction",
+"mbid": "3fedf601-0039-4ba4-af53-7b6d1ff5b69a",
+"url": "https://www.last.fm/music/One+Direction"
+}
+}, {
+"name": "More Than This",
+"url": "https://www.last.fm/music/One+Direction/_/More+Than+This",
+"duration": "229",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "One Direction",
+"mbid": "3fedf601-0039-4ba4-af53-7b6d1ff5b69a",
+"url": "https://www.last.fm/music/One+Direction"
+}
+}, {
+"name": "Up All Night",
+"url": "https://www.last.fm/music/One+Direction/_/Up+All+Night",
+"duration": "194",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "One Direction",
+"mbid": "3fedf601-0039-4ba4-af53-7b6d1ff5b69a",
+"url": "https://www.last.fm/music/One+Direction"
+}
+}, {
+"name": "I Wish",
+"url": "https://www.last.fm/music/One+Direction/_/I+Wish",
+"duration": "216",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "One Direction",
+"mbid": "3fedf601-0039-4ba4-af53-7b6d1ff5b69a",
+"url": "https://www.last.fm/music/One+Direction"
+}
+}, {
+"name": "Tell Me a Lie",
+"url": "https://www.last.fm/music/One+Direction/_/Tell+Me+a+Lie",
+"duration": "198",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "One Direction",
+"mbid": "3fedf601-0039-4ba4-af53-7b6d1ff5b69a",
+"url": "https://www.last.fm/music/One+Direction"
+}
+}, {
+"name": "Taken",
+"url": "https://www.last.fm/music/One+Direction/_/Taken",
+"duration": "237",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "One Direction",
+"mbid": "3fedf601-0039-4ba4-af53-7b6d1ff5b69a",
+"url": "https://www.last.fm/music/One+Direction"
+}
+}, {
+"name": "I Want",
+"url": "https://www.last.fm/music/One+Direction/_/I+Want",
+"duration": "173",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "One Direction",
+"mbid": "3fedf601-0039-4ba4-af53-7b6d1ff5b69a",
+"url": "https://www.last.fm/music/One+Direction"
+}
+}, {
+"name": "Everything About You",
+"url": "https://www.last.fm/music/One+Direction/_/Everything+About+You",
+"duration": "217",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "One Direction",
+"mbid": "3fedf601-0039-4ba4-af53-7b6d1ff5b69a",
+"url": "https://www.last.fm/music/One+Direction"
+}
+}, {
+"name": "Same Mistakes",
+"url": "https://www.last.fm/music/One+Direction/_/Same+Mistakes",
+"duration": "217",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "One Direction",
+"mbid": "3fedf601-0039-4ba4-af53-7b6d1ff5b69a",
+"url": "https://www.last.fm/music/One+Direction"
+}
+}, {
+"name": "Save You Tonight",
+"url": "https://www.last.fm/music/One+Direction/_/Save+You+Tonight",
+"duration": "205",
+"@attr": {
+"rank": "12"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "One Direction",
+"mbid": "3fedf601-0039-4ba4-af53-7b6d1ff5b69a",
+"url": "https://www.last.fm/music/One+Direction"
+}
+}, {
+"name": "Stole My Heart",
+"url": "https://www.last.fm/music/One+Direction/_/Stole+My+Heart",
+"duration": "205",
+"@attr": {
+"rank": "13"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "One Direction",
+"mbid": "3fedf601-0039-4ba4-af53-7b6d1ff5b69a",
+"url": "https://www.last.fm/music/One+Direction"
+}
+}]
+}]
+}, {
+"name": "Sunshine Pop",
+"albums": [{
+"artist": "Taylor Swift",
+"name": "Red",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/649c9a4bdd5c46b7b2ce11d58afd00f9.png",
+"songs": [{
+"name": "State of Grace",
+"url": "https://www.last.fm/music/Taylor+Swift/_/State+of+Grace",
+"duration": "296",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Red",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Red",
+"duration": "221",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Treacherous",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Treacherous",
+"duration": "241",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "I Knew You Were Trouble",
+"url": "https://www.last.fm/music/Taylor+Swift/_/I+Knew+You+Were+Trouble",
+"duration": "218",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "All Too Well",
+"url": "https://www.last.fm/music/Taylor+Swift/_/All+Too+Well",
+"duration": "328",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "22",
+"url": "https://www.last.fm/music/Taylor+Swift/_/22",
+"duration": "231",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "I Almost Do",
+"url": "https://www.last.fm/music/Taylor+Swift/_/I+Almost+Do",
+"duration": "243",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "We Are Never Ever Getting Back Together",
+"url": "https://www.last.fm/music/Taylor+Swift/_/We+Are+Never+Ever+Getting+Back+Together",
+"duration": "193",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Stay Stay Stay",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Stay+Stay+Stay",
+"duration": "205",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "The Last Time",
+"url": "https://www.last.fm/music/Taylor+Swift/_/The+Last+Time",
+"duration": "299",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Holy Ground",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Holy+Ground",
+"duration": "202",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Sad Beautiful Tragic",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Sad+Beautiful+Tragic",
+"duration": "284",
+"@attr": {
+"rank": "12"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "The Lucky One",
+"url": "https://www.last.fm/music/Taylor+Swift/_/The+Lucky+One",
+"duration": "241",
+"@attr": {
+"rank": "13"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Everything Has Changed",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Everything+Has+Changed",
+"duration": "244",
+"@attr": {
+"rank": "14"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Starlight",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Starlight",
+"duration": "218",
+"@attr": {
+"rank": "15"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Begin Again",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Begin+Again",
+"duration": "238",
+"@attr": {
+"rank": "16"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}]
+}, {
+"artist": "Taylor Swift",
+"name": "Taylor Swift",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/138e1e9c739d46d6c647ec21a8a4f4cd.png",
+"songs": [{
+"name": "Tim McGraw",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Tim+McGraw",
+"duration": "232",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Picture to Burn",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Picture+to+Burn",
+"duration": "173",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Teardrops on My Guitar",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Teardrops+on+My+Guitar",
+"duration": "213",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "A Place in This World",
+"url": "https://www.last.fm/music/Taylor+Swift/_/A+Place+in+This+World",
+"duration": "199",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Cold as You",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Cold+as+You",
+"duration": "239",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "The Outside",
+"url": "https://www.last.fm/music/Taylor+Swift/_/The+Outside",
+"duration": "207",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Tied Together with a Smile",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Tied+Together+with+a+Smile",
+"duration": "248",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Stay Beautiful",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Stay+Beautiful",
+"duration": "236",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Should've Said No",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Should%27ve+Said+No",
+"duration": "242",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Mary's Song (Oh My My My)",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Mary%27s+Song+(Oh+My+My+My)",
+"duration": "213",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Our Song",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Our+Song",
+"duration": "207",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "I'm Only Me When I'm with You",
+"url": "https://www.last.fm/music/Taylor+Swift/_/I%27m+Only+Me+When+I%27m+with+You",
+"duration": "215",
+"@attr": {
+"rank": "12"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Invisible",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Invisible",
+"duration": "205",
+"@attr": {
+"rank": "13"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "A Perfectly Good Heart",
+"url": "https://www.last.fm/music/Taylor+Swift/_/A+Perfectly+Good+Heart",
+"duration": "222",
+"@attr": {
+"rank": "14"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}, {
+"name": "Taylor's 1st Phone Call with Tim McGraw",
+"url": "https://www.last.fm/music/Taylor+Swift/_/Taylor%27s+1st+Phone+Call+with+Tim+McGraw",
+"duration": "283",
+"@attr": {
+"rank": "15"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Taylor Swift",
+"mbid": "20244d07-534f-4eff-b4d4-930878889970",
+"url": "https://www.last.fm/music/Taylor+Swift"
+}
+}]
+}]
+}, {
+"name": "Teen Pop",
+"albums": [{
+"artist": "Katy Perry",
+"name": "Teenage Dream",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/8e9ec9a2178d480ac83f1e5d402f51a0.png",
+"songs": [{
+"name": "Teenage Dream",
+"url": "https://www.last.fm/music/Katy+Perry/_/Teenage+Dream",
+"duration": "227",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Katy Perry",
+"mbid": "122d63fc-8671-43e4-9752-34e846d62a9c",
+"url": "https://www.last.fm/music/Katy+Perry"
+}
+}, {
+"name": "Last Friday Night (T.G.I.F.)",
+"url": "https://www.last.fm/music/Katy+Perry/_/Last+Friday+Night+(T.G.I.F.)",
+"duration": "230",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Katy Perry",
+"mbid": "122d63fc-8671-43e4-9752-34e846d62a9c",
+"url": "https://www.last.fm/music/Katy+Perry"
+}
+}, {
+"name": "California Gurls (feat. Snoop Dogg)",
+"url": "https://www.last.fm/music/Katy+Perry/_/California+Gurls+(feat.+Snoop+Dogg)",
+"duration": "234",
+"@attr": {
+"rank": "3"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Katy Perry",
+"mbid": "122d63fc-8671-43e4-9752-34e846d62a9c",
+"url": "https://www.last.fm/music/Katy+Perry"
+}
+}, {
+"name": "Firework",
+"url": "https://www.last.fm/music/Katy+Perry/_/Firework",
+"duration": "227",
+"@attr": {
+"rank": "4"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Katy Perry",
+"mbid": "122d63fc-8671-43e4-9752-34e846d62a9c",
+"url": "https://www.last.fm/music/Katy+Perry"
+}
+}, {
+"name": "Peacock",
+"url": "https://www.last.fm/music/Katy+Perry/_/Peacock",
+"duration": "231",
+"@attr": {
+"rank": "5"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Katy Perry",
+"mbid": "122d63fc-8671-43e4-9752-34e846d62a9c",
+"url": "https://www.last.fm/music/Katy+Perry"
+}
+}, {
+"name": "Circle the Drain",
+"url": "https://www.last.fm/music/Katy+Perry/_/Circle+the+Drain",
+"duration": "272",
+"@attr": {
+"rank": "6"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Katy Perry",
+"mbid": "122d63fc-8671-43e4-9752-34e846d62a9c",
+"url": "https://www.last.fm/music/Katy+Perry"
+}
+}, {
+"name": "The One That Got Away",
+"url": "https://www.last.fm/music/Katy+Perry/_/The+One+That+Got+Away",
+"duration": "227",
+"@attr": {
+"rank": "7"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Katy Perry",
+"mbid": "122d63fc-8671-43e4-9752-34e846d62a9c",
+"url": "https://www.last.fm/music/Katy+Perry"
+}
+}, {
+"name": "E.T.",
+"url": "https://www.last.fm/music/Katy+Perry/_/E.T.",
+"duration": "206",
+"@attr": {
+"rank": "8"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Katy Perry",
+"mbid": "122d63fc-8671-43e4-9752-34e846d62a9c",
+"url": "https://www.last.fm/music/Katy+Perry"
+}
+}, {
+"name": "Who Am I Living For?",
+"url": "https://www.last.fm/music/Katy+Perry/_/Who+Am+I+Living+For%3F",
+"duration": "248",
+"@attr": {
+"rank": "9"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Katy Perry",
+"mbid": "122d63fc-8671-43e4-9752-34e846d62a9c",
+"url": "https://www.last.fm/music/Katy+Perry"
+}
+}, {
+"name": "Pearl",
+"url": "https://www.last.fm/music/Katy+Perry/_/Pearl",
+"duration": "247",
+"@attr": {
+"rank": "10"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Katy Perry",
+"mbid": "122d63fc-8671-43e4-9752-34e846d62a9c",
+"url": "https://www.last.fm/music/Katy+Perry"
+}
+}, {
+"name": "Hummingbird Heartbeat",
+"url": "https://www.last.fm/music/Katy+Perry/_/Hummingbird+Heartbeat",
+"duration": "212",
+"@attr": {
+"rank": "11"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Katy Perry",
+"mbid": "122d63fc-8671-43e4-9752-34e846d62a9c",
+"url": "https://www.last.fm/music/Katy+Perry"
+}
+}, {
+"name": "Not Like the Movies",
+"url": "https://www.last.fm/music/Katy+Perry/_/Not+Like+the+Movies",
+"duration": "241",
+"@attr": {
+"rank": "12"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Katy Perry",
+"mbid": "122d63fc-8671-43e4-9752-34e846d62a9c",
+"url": "https://www.last.fm/music/Katy+Perry"
+}
+}]
+}, {
+"artist": "Katy Perry",
+"name": "California Gurls",
+"imagePath": "https://lastfm-img2.akamaized.net/i/u/174s/3c21e52a628c4be294c210e239c573bd.png",
+"songs": [{
+"name": "California Gurls (feat. Snoop Dogg)",
+"url": "https://www.last.fm/music/Katy+Perry/_/California+Gurls+(feat.+Snoop+Dogg)",
+"duration": "234",
+"@attr": {
+"rank": "1"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Katy Perry",
+"mbid": "122d63fc-8671-43e4-9752-34e846d62a9c",
+"url": "https://www.last.fm/music/Katy+Perry"
+}
+}, {
+"name": "Hot N Cold (Yelle Remix)",
+"url": "https://www.last.fm/music/Katy+Perry/_/Hot+N+Cold+(Yelle+Remix)",
+"duration": "247",
+"@attr": {
+"rank": "2"
+},
+"streamable": {
+"#text": "0",
+"fulltrack": "0"
+},
+"artist": {
+"name": "Katy Perry",
+"mbid": "122d63fc-8671-43e4-9752-34e846d62a9c",
+"url": "https://www.last.fm/music/Katy+Perry"
+}
+}]
+}]
+}]
+                </pre>
+                            <hr>
+                        </div>
+                        <div id="getalbum" class="tab-pane fade">
+                            <h2 class="B2"> Get album by artist and album name</h2>
+                            <pre class="prex">/music/album</pre>
+                            <h4 class="verb">Verb: GET</h4>
+                            <h5>Example Request:</h5>
+                            <pre class="prex">http://localhost:3000/music/album?name=Believe&&artist=Cher</pre>
+                            <h5>Parameters:</h5>
+                            <table>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td>name</td>
+                                    <td>String</td>
+                                    <td>Album name</td>
+                                </tr>
+                                <tr>
+                                    <td>artist</td>
+                                    <td>String</td>
+                                    <td>Artist name</td>
+                                </tr>
+                            </table>
+                            <hr>
+                            <h3 class="greenText">Success 200</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+    {
+        album: {
+        name: "undefined",
+        artist: "Cher",
+        url: "https://www.last.fm/music/Cher/undefined",
+        image: [
+        {#text: "",
+        size: "small"},
+        {#text: "",
+        size: "medium"},
+        {#text: "",
+        size: "large"},
+        {#text: "",
+        size: "extralarge"},
+        {#text: "",
+        size: "mega"},
+        {#text: "",
+        size: ""}
+        ],
+        listeners: "10",
+        playcount: "15",
+        tracks: {
+        track: [ ]
+        },
+        tags: {
+        tag: [ ]
+        }
+        }
+        }
+                            </pre>
+                            <hr>
+                            <h3 class="redText">Error 400</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+    {
+        "error": 'artist or track not sent'
+    }
+                            </pre>
+                            <hr>
+                        </div>
+
+                        <div id="getsong" class="tab-pane fade">
+
+                            <h2 class="B2">Get song by artist name and track name</h2>
+                            <pre class="prex">/music/song</pre>
+                            <h4 class="verb">Verb: GET</h4>
+                            <h5>Example Request:</h5>
+                            <pre class="prex">http://localhost:3000/music/song?track=Belive&&artist=Cher</pre>
+                            <h5>Parameters:</h5>
+                            <table>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td>track</td>
+                                    <td>String</td>
+                                    <td>Track name</td>
+                                </tr>
+                                <tr>
+                                    <td>artist</td>
+                                    <td>String</td>
+                                    <td>Artist name</td>
+                                </tr>
+                            </table>
+                            <hr>
+                            <h3 class="greenText">Success 200</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+        {
+        album: {
+        name: "Believe",
+        artist: "Cher",
+        mbid: "63b3a8ca-26f2-4e2b-b867-647a6ec2bebd",
+        url: "https://www.last.fm/music/Cher/Believe",
+        image: [
+        {#text: "https://lastfm-img2.akamaized.net/i/u/34s/b0c2311a9af7f0edbc8b99450944ca1b.png",
+        size: "small"},
+        {#text: "https://lastfm-img2.akamaized.net/i/u/64s/b0c2311a9af7f0edbc8b99450944ca1b.png",
+        size: "medium"},
+        {#text: "https://lastfm-img2.akamaized.net/i/u/174s/b0c2311a9af7f0edbc8b99450944ca1b.png",
+        size: "large"},
+        {#text: "https://lastfm-img2.akamaized.net/i/u/300x300/b0c2311a9af7f0edbc8b99450944ca1b.png",
+        size: "extralarge"},
+        {#text: "https://lastfm-img2.akamaized.net/i/u/b0c2311a9af7f0edbc8b99450944ca1b.png",
+        size: "mega"},
+        {#text: "https://lastfm-img2.akamaized.net/i/u/arQ/b0c2311a9af7f0edbc8b99450944ca1b.png",size: ""}],
+        listeners: "312625",playcount: "1963664",
+        tracks: {
+        track: [
+        {
+        name: "Believe",
+        url: "https://www.last.fm/music/Cher/_/Believe",
+        duration: "238",
+        @attr: {
+        rank: "1"},
+        streamable: {
+        #text: "0",
+        fulltrack: "0"
+        },
+        artist: {
+        name: "Cher",
+        mbid: "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        url: "https://www.last.fm/music/Cher"}},
+        {
+        name: "The Power",
+        url: "https://www.last.fm/music/Cher/_/The+Power",
+        duration: "236",
+        @attr: {
+        rank: "2"
+        },
+        streamable: {
+        #text: "0",
+        fulltrack: "0"
+        },
+        artist: {
+        name: "Cher",
+        mbid: "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        url: "https://www.last.fm/music/Cher"
+        }
+        },
+        {
+        name: "Runaway",
+        url: "https://www.last.fm/music/Cher/_/Runaway",
+        duration: "286",
+        @attr: {
+        rank: "3"
+        },
+        streamable: {
+        #text: "0",
+        fulltrack: "0"
+        },
+        artist: {
+        name: "Cher",
+        mbid: "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        url: "https://www.last.fm/music/Cher"
+        }
+        },
+        {
+        name: "All or Nothing",
+        url: "https://www.last.fm/music/Cher/_/All+or+Nothing",
+        duration: "238",
+        @attr: {
+        rank: "4"
+        },
+        streamable: {
+        #text: "0",
+        fulltrack: "0"
+        },
+        artist: {
+        name: "Cher",
+        mbid: "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        url: "https://www.last.fm/music/Cher"
+        }
+        },
+        {
+        name: "Strong Enough",
+        url: "https://www.last.fm/music/Cher/_/Strong+Enough",
+        duration: "224",
+        @attr: {
+        rank: "5"
+        },
+        streamable: {
+        #text: "0",
+        fulltrack: "0"
+        },
+        artist: {
+        name: "Cher",
+        mbid: "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        url: "https://www.last.fm/music/Cher"
+        }
+        },
+        {
+        name: "Dov'e L'amore",
+        url: "https://www.last.fm/music/Cher/_/Dov%27e+L%27amore",
+        duration: "258",
+        @attr: {
+        rank: "6"
+        },
+        streamable: {
+        #text: "0",
+        fulltrack: "0"
+        },
+        artist: {
+        name: "Cher",
+        mbid: "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        url: "https://www.last.fm/music/Cher"
+        }
+        },
+        {
+        name: "Takin' Back My Heart",
+        url: "https://www.last.fm/music/Cher/_/Takin%27+Back+My+Heart",
+        duration: "272",
+        @attr: {
+        rank: "7"
+        },
+        streamable: {
+        #text: "0",
+        fulltrack: "0"
+        },
+        artist: {
+        name: "Cher",
+        mbid: "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        url: "https://www.last.fm/music/Cher"
+        }
+        },
+        {
+        name: "Taxi Taxi",
+        url: "https://www.last.fm/music/Cher/_/Taxi+Taxi",
+        duration: "304",
+        @attr: {
+        rank: "8"
+        },
+        streamable: {
+        #text: "0",
+        fulltrack: "0"
+        },
+        artist: {
+        name: "Cher",
+        mbid: "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        url: "https://www.last.fm/music/Cher"
+        }
+        },
+        {
+        name: "Love Is the Groove",
+        url: "https://www.last.fm/music/Cher/_/Love+Is+the+Groove",
+        duration: "271",
+        @attr: {
+        rank: "9"
+        },
+        streamable: {
+        #text: "0",
+        fulltrack: "0"
+        },
+        artist: {
+        name: "Cher",
+        mbid: "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        url: "https://www.last.fm/music/Cher"
+        }
+        },
+        {
+        name: "We All Sleep Alone",
+        url: "https://www.last.fm/music/Cher/_/We+All+Sleep+Alone",
+        duration: "233",
+        @attr: {
+        rank: "10"
+        },
+        streamable: {
+        #text: "0",
+        fulltrack: "0"
+        },
+        artist: {
+        name: "Cher",
+        mbid: "bfcc6d75-a6a5-4bc6-8282-47aec8531818",
+        url: "https://www.last.fm/music/Cher"
+        }
+        }
+        ]
+        },
+        tags: {
+        tag: [
+        {
+        name: "pop",
+        url: "https://www.last.fm/tag/pop"
+        },
+        {
+        name: "90s",
+        url: "https://www.last.fm/tag/90s"
+        },
+        {
+        name: "dance",
+        url: "https://www.last.fm/tag/dance"
+        },
+        {
+        name: "cher",
+        url: "https://www.last.fm/tag/cher"
+        },
+        {
+        name: "albums I own",
+        url: "https://www.last.fm/tag/albums+I+own"
+        }
+        ]
+        },
+        wiki: {
+        published: "27 Jul 2008, 15:55",
+        summary: "Believe is the twenty-third studio album by American singer-actress Cher, released on November 10, 1998 by Warner Bros. Records. The RIAA certified it Quadruple Platinum on December 23, 1999, recognizing four million shipments in the United States; Worldwide, the album has sold more than 20 million copies, making it the biggest-selling album of her career. In 1999 the album received three Grammy Awards nominations including "Record of the Year", "Best Pop Album" and winning "Best Dance Recording" for the single "Believe". <a
+                                    href="http://www.last.fm/music/Cher/Believe">Read more on Last.fm</a>.",
+        content: "Believe is the twenty-third studio album by American singer-actress Cher, released on November 10, 1998 by Warner Bros. Records. The RIAA certified it Quadruple Platinum on December 23, 1999, recognizing four million shipments in the United States; Worldwide, the album has sold more than 20 million copies, making it the biggest-selling album of her career. In 1999 the album received three Grammy Awards nominations including "Record of the Year", "Best Pop Album" and winning "Best Dance Recording" for the single "Believe". It was released by Warner Bros. Records at the end of 1998. The album was executive produced by Rob Dickens. Upon its debut, critical reception was generally positive. Believe became Cher's most commercially-successful release, reached number one and Top 10 all over the world. In the United States, the album was released on November 10, 1998, and reached number four on the Billboard 200 chart, where it was certified four times platinum. The album featured a change in Cher's music; in addition, Believe presented a vocally stronger Cher and a massive use of vocoder and Auto-Tune. In 1999, the album received 3 Grammy Awards nominations for "Record of the Year", "Best Pop Album" and winning "Best Dance Recording". Throughout 1999 and into 2000 Cher was nominated and winning many awards for the album including a Billboard Music Award for "Female Vocalist of the Year", Lifelong Contribution Awards and a Star on the Walk of Fame shared with former Sonny Bono. The boost in Cher's popularity led to a very successful Do You Believe? Tour. The album was dedicated to Sonny Bono, Cher's former husband who died earlier that year from a skiing accident. Cher also recorded a cover version of "Love Is in the Air" during early sessions for this album. Although never officially released, the song has leaked on file sharing networks. Singles "Believe" "Strong Enough" "All or Nothing" "Dov'è L'Amore" <a
+                                    href="http://www.last.fm/music/Cher/Believe">Read more on Last.fm</a>. User-contributed text is available under the Creative Commons By-SA License; additional terms may apply."
+        }
+        }
+}                       </pre>
+                            <hr>
+                            <h3 class="redText">Error 400</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+    {
+        "error": 'artist or track not sent'
+    }
+                            </pre>
+                            <hr>
+                        </div>
+                        <div id="getyoutube" class="tab-pane fade">
+
+                            <h2 class="B2">Get Youtube song by artist name and track name</h2>
+                            <pre class="prex">/music/youtubeSong</pre>
+                            <h4 class="verb">Verb: GET</h4>
+                            <h5>Example Request:</h5>
+                            <pre class="prex">http://localhost:3000/music/youtubeSong?track=Believe&&artist=Cher</pre>
+                            <h5>Parameters:</h5>
+                            <table>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td>track</td>
+                                    <td>String</td>
+                                    <td>Track name</td>
+                                </tr>
+                                <tr>
+                                    <td>artist</td>
+                                    <td>String</td>
+                                    <td>Artist name</td>
+                                </tr>
+                            </table>
+                            <hr>
+                            <h3 class="greenText">Success 200</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+    [{
+    id: "4p0chD8U8fA",
+    link: "https://www.youtube.com/watch?v=4p0chD8U8fA",
+    kind: "youtube#video",
+    publishedAt: "2010-08-14T08:03:15.000Z",
+    channelId: "UC164lHTO2gGM3CqD8DLtd0g",
+    channelTitle: "cherdeutschland",
+    title: "Cher - Believe (Offical Music Video) HD-Quality",
+    description: "Album: Believe Writers: Brian Higgins, Matthew Gray, Paul Barry, Steve Torch, Stuart McLennan & Timothy Powell © 1998 Warner Music U.K. Ltd.",
+    thumbnails: {
+    default: {
+        url: "https://i.ytimg.com/vi/4p0chD8U8fA/default.jpg",
+        width: 120,
+        height: 90},
+    medium: {
+        url: "https://i.ytimg.com/vi/4p0chD8U8fA/mqdefault.jpg",
+        width: 320,
+        height: 180},
+    high: {
+        url: "https://i.ytimg.com/vi/4p0chD8U8fA/hqdefault.jpg",
+        width: 480,
+        height: 360}
+        }
+     }
+    ]
+                            </pre>
+                            <hr>
+                            <h3 class="redText">Error 400</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+    {
+        "error": "artist or track not sent"
+    }
+                            </pre>
+                            <hr>
+                            <h3 class="redText">Error 500</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+    {
+        "error": 'error description'
+    }
+                            </pre>
+                            <hr>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

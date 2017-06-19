@@ -13,10 +13,10 @@ exports.getDefaultSubgenres = (req, res, next) => {
 
 exports.getAlbum = (req, res, next) => {
 
-    let album  = req.query.album,
+    let album  = req.query.name,
         artist = req.query.artist;
 
-    if(artist === undefined || track === undefined) {
+    if(artist === undefined || album === undefined) {
         res.status(400).json({"error": 'artist or track not sent'});
         return; //In order to avoid sending a response twice to the client.
     }
