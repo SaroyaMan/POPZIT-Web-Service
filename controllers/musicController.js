@@ -64,12 +64,22 @@ exports.getYoutubeSong = (req, res, next) => {
         key: keys.YOUTUBE_KEY
     };
 
-    youtubeSearch(`${artist} - ${track}`, opts, function(err, results) {
+    youtubeSearch(`${artist} - ${track} - lyrics`, opts, function(err, results) {
         if(err) {
             res.status(500).json({"error": err});
             return; //In order to avoid sending a response twice to the client.
         }
-        res.status(200).json(results);
+        //res.status(200).json(results);
+        let youtubeId = results[0].id;
+        let songJson =
+                {
+                    "artist": artist,
+                    "track": track,
+                    //"album": albumName,
+                    "youtubeId": youtubeId,
+                    "youtube": `https://www.youtube.com/watch?v=${youtubeId}`
+                };
+        res.status(200).json(songJson);
     });
 
 };
@@ -87,7 +97,6 @@ function getSongParsed(artist, track) {
 
                 let lastFmJsonSong = JSON.parse(body);
 
-
                 if(lastFmJsonSong.track === undefined) {       //Song not found
                     reject({"error": `Song ${track} by artist ${artist} has not been found`});
                     return; //In order to avoid sending a response twice to the client.
@@ -101,18 +110,19 @@ function getSongParsed(artist, track) {
                         const dom = new JSDOM(body);
                         let anchorTag = dom.window.document.querySelector(`a[data-youtube-id]`);
                         if(anchorTag === null) {       //Song not found
+                            console.log('failed to find!');
                             reject({"error": `Song ${track} by artist ${artist} has not been found`});
                             return; //In order to avoid sending a response twice to the client.
                         }
 
                         let youtubeId = anchorTag.getAttribute("data-youtube-id");
-                        let albumName = lastFmJsonSong.track.album !== undefined ?
-                            lastFmJsonSong.track.album.title : 'unknown';
-                        songJson =
+                        //let albumName = lastFmJsonSong.track.album !== undefined ?
+                        //                lastFmJsonSong.track.album.title : 'unknown';
+                        let songJson =
                             {
                                 "artist": artist,
                                 "track": track,
-                                "album": albumName,
+                                //"album": albumName,
                                 "youtubeId": youtubeId,
                                 "youtube": `https://www.youtube.com/watch?v=${youtubeId}`
                             };
