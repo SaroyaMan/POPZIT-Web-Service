@@ -1,5 +1,4 @@
 //--------------------------------Connect to mongodb on mLab via Mongoose--------------------------------//
-
 const keys = require('./keys'),
       mongoose = require('mongoose');
 
