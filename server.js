@@ -6,9 +6,10 @@ const express      = require('express'),
       bodyParser   = require('body-parser');
 
 //import routes
-const apiRoutes    = require('./routes/api'),
-      userRoutes   = require('./routes/users'),
-      musicRoutes  = require('./routes/music');
+const apiRoutes      = require('./routes/api'),
+      userRoutes     = require('./routes/users'),
+      musicRoutes    = require('./routes/music'),
+      playlistRoutes = require('./routes/playlist');
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use( (req, res, next) => {
 });
 
 //loading the routes
+app.use('/playlist', playlistRoutes);
 app.use('/music', musicRoutes);
 app.use('/user', userRoutes);
 app.use('/', apiRoutes);

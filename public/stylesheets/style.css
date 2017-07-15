@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-main, header, section, nav, footer, p, button {
+main, header, section, nav, footer, button {
     display: block;
 }
 
@@ -13,6 +13,12 @@ main, header, section, nav, footer, p, button {
     color: #000000;
     font-family: 'Arial', sans-serif;
 }
+
+.clear {
+    clear: both;
+}
+
+
 .ul_col {
     color: red;
 }
@@ -124,3 +130,44 @@ th {
  }
 
 pre a {color: white !important;}
+
+
+
+h1 {
+    color: white;
+    font-size: 1000%;
+}
+
+
+.container {
+    /*width: 50%;*/
+    /*height: 600px;*/
+    /*margin: 0 auto;*/
+    /*position: absolute;*/
+    top: 50%;
+    left: 50%;
+}
+
+/*=========================================*/
+/*Error Handler CSS*/
+/*=========================================*/
+
+#error {
+    margin-left: -10%;
+}
+
+#error h1 {
+    color: red;
+    font-size: 400%;
+    margin-bottom: 5%;
+}
+
+#error a {
+    text-decoration: none;
+    margin: 10px;
+}
+#error img {
+    height: auto;
+    width: auto;
+    margin: auto;
+}
