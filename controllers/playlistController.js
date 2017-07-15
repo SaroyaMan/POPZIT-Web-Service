@@ -82,7 +82,7 @@ exports.updateAdminPlaylist = (req, res, next) => {
             }
             else {
                 console.log('Admin Playlist updated');
-                res.status(201).json({user: data.user, songs: data.songs});
+                res.status(201).json({playlist: playlistId, songs: songs});
             }
         })
 };
