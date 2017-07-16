@@ -8,6 +8,7 @@
         <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#home">Users</a></li>
             <li><a data-toggle="tab" href="#menu2">Music</a></li>
+            <li><a data-toggle="tab" href="#menu3">Playlists</a></li>
         </ul>
 
         <div class="tab-content">
@@ -26,7 +27,7 @@
                             <pre class="prex">/user/signup</pre>
                             <h4 class="verb">Verb: POST</h4>
                             <h5>Example Request:</h5>
-                            <pre class="prex" class="prex">{
+                            <pre class="prex">{
     "email":"keren@gmail.com",
     "password":"*******",
     "firstName":"keren",
@@ -5993,6 +5994,477 @@
                             </pre>
                             <hr>
                         </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="menu3" class="tab-pane fade">
+
+                <h1 class="B1">Playlists</h1>
+                <div class="contanier">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#getPlaylist">Get playlist</a></li>
+                        <li><a data-toggle="tab" href="#savePlaylist">Save playlist</a></li>
+                        <li><a data-toggle="tab" href="#getAllAdminPlaylists">Get all admin playlists</a></li>
+                        <li><a data-toggle="tab" href="#getAdminPlaylists">Get admin playlists</a></li>
+                        <li><a data-toggle="tab" href="#publishPlaylist">Save admin playlist</a></li>
+                        <li><a data-toggle="tab" href="#updateAdminPlaylist">Update admin Playlist</a></li>
+                        <li><a data-toggle="tab" href="#removeAdminPlaylist">Remove admin Playlist</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="getPlaylist" class="tab-pane fade in active">
+                            <h2 class="B2">Get playlist by user id</h2>
+                            <pre class="prex">/playlist/getPlaylist</pre>
+                            <h4 class="verb">Verb: GET</h4>
+                            <h5>Example Request:</h5>
+                            <pre class="prex"><a target="_blank" href="https://popzit-ws.herokuapp.com/playlist/getPlaylist?userId=596a75061926db23ecb710a0">https://popzit-ws.herokuapp.com/playlist/getPlaylist?userId=596a75061926db23ecb710a0</a></pre>
+
+                            <h5>Parameters:</h5>
+                            <table>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>String</td>
+                                    <td>User ID you can get from 'Sign In' method</td>
+                                </tr>
+                            </table>
+                            <hr>
+                            <h3 class="greenText">Success 200</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+{
+    _id: "596a8866d1aab02f99c97a28",
+    user: "596a75061926db23ecb710a0",
+    __v: 0,
+    songs: [
+    {
+        _id: "596a8de52fdd5315080aae0e",
+        album: {
+        songs: null,
+        imagePath: "https://lastfm-img2.akamaized.net/i/u/174s/1623ee43952b4e38ce4d0d66ec1267b0.png",
+        name: "The Fame",
+        artist: null
+        },
+        youtubeId: "6nIvBI2_hSY",
+        artist: "Lady Gaga",
+        name: "Paparazzi"
+        },
+        {
+        _id: "596a8de52fdd5315080aae0d",
+        album: {
+        songs: null,
+        imagePath: "https://lastfm-img2.akamaized.net/i/u/174s/1623ee43952b4e38ce4d0d66ec1267b0.png",
+        name: "The Fame",
+        artist: null
+        },
+        youtubeId: "gKeoEGHo3MY",
+        artist: "Lady Gaga",
+        name: "LoveGame"
+        },
+        {
+        _id: "596a8de52fdd5315080aae0c",
+        album: {
+        songs: null,
+        imagePath: "https://lastfm-img2.akamaized.net/i/u/174s/1623ee43952b4e38ce4d0d66ec1267b0.png",
+        name: "The Fame",
+        artist: null
+        },
+        youtubeId: "GjyltncPu7I",
+        artist: "Lady Gaga",
+        name: "Just Dance"
+    }
+    ]
+}
+ </pre>
+                            <hr>
+                            <h3 class="redText">Error 400</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">{error": playlist of user XXXXXXXX not found}</pre>
+                            <hr>
+                        </div>
+
+                        <div id="savePlaylist" class="tab-pane fade">
+                            <h2 class="B2">Save playlist of specific user</h2>
+                            <pre class="prex">/playlist/savePlaylist</pre>
+                            <h4 class="verb">Verb: POST</h4>
+                            <h5>Example Request:</h5>
+                            <pre class="prex">{
+{
+	user: '596a75061926db23ecb710a0',
+	songs: [{
+			name: 'Paparazzi',
+			artist: 'Lady Gaga',
+			youtubeId: '6nIvBI2_hSY',
+			album: [Object]
+		},
+		{
+			name: 'LoveGame',
+			artist: 'Lady Gaga',
+			youtubeId: 'gKeoEGHo3MY',
+			album: [Object]
+		},
+		{
+			name: 'Just Dance',
+			artist: 'Lady Gaga',
+			youtubeId: 'GjyltncPu7I',
+			album: [Object]
+		}
+	]
+}
+                            </pre>
+                            <h5>Parameters:</h5>
+                            <table>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td>user</td>
+                                    <td>String</td>
+                                    <td>User ID you can get from 'Sign In' method</td>
+                                </tr>
+                                <tr>
+                                    <td>songs</td>
+                                    <td>song[]</td>
+                                    <td>Songs the playlists is based on</td>
+                                </tr>
+                            </table>
+                            <hr>
+                            <h3 class="greenText">Success 201</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+{
+	user: '596a75061926db23ecb710a0',
+	songs: [{
+			name: 'Paparazzi',
+			artist: 'Lady Gaga',
+			youtubeId: '6nIvBI2_hSY',
+			album: [Object]
+		},
+		{
+			name: 'LoveGame',
+			artist: 'Lady Gaga',
+			youtubeId: 'gKeoEGHo3MY',
+			album: [Object]
+		},
+		{
+			name: 'Just Dance',
+			artist: 'Lady Gaga',
+			youtubeId: 'GjyltncPu7I',
+			album: [Object]
+		}
+	]
+}
+ </pre>
+                            <hr>
+                            <h3 class="redText">Error 501</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">{error": internal server error, save playlist failed}</pre>
+                            <hr>
+                        </div>
+
+                        <div id="getAllAdminPlaylists" class="tab-pane fade">
+                            <h2 class="B2">Get all admin playlists</h2>
+                            <pre class="prex">/playlist/allAdminPlaylists</pre>
+                            <h4 class="verb">Verb: GET</h4>
+                            <h5>Example Request:</h5>
+                            <pre class="prex"><a target="_blank" href="https://popzit-ws.herokuapp.com/playlist/allAdminPlaylists">https://popzit-ws.herokuapp.com/playlist/allAdminPlaylists</a></pre>
+                            <hr>
+                            <h3 class="greenText">Success 200</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+[
+    {
+        _id: "596a8de52fdd5315080aae0b",
+        user: {
+        id: "596a75061926db23ecb710a0",
+        email: "stankovic100@gmail.com",
+        firstName: "Yoav",
+        lastName: "Saroya",
+        birthdate: "1991-04-02T21:00:00.000Z",
+        gravatarHash: "709ab0743ec1f1e662d06cbf37abeeb3",
+        _id: "596a8de52fdd5315080aae0f"
+    },
+    __v: 0,
+    songs: [
+        {
+            name: "Paparazzi",
+            artist: "Lady Gaga",
+            youtubeId: "6nIvBI2_hSY",
+            album: {
+            artist: null,
+            name: "The Fame",
+            imagePath: "https://lastfm-img2.akamaized.net/i/u/174s/1623ee43952b4e38ce4d0d66ec1267b0.png",
+            songs: null
+        },
+        _id: "596a8de52fdd5315080aae0e"
+        },
+        {
+            _id: "596a98f52fdd5315080aae2d",
+            album: {
+            songs: null,
+            imagePath: "https://lastfm-img2.akamaized.net/i/u/174s/02917ad5b72f48ed9a48aeb7bb21057a.png",
+            name: "Greatest Hits",
+            artist: null
+            },
+            youtubeId: "g9j5UzxEhEM",
+            artist: "linkin park",
+            name: "in the end"
+        }
+    ]}
+]
+ </pre>
+                            <hr>
+                            <h3 class="redText">Error 400</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">{error: admin playlists of was not found}</pre>
+                            <hr>
+                        </div>
+
+                        <div id="getAdminPlaylists" class="tab-pane fade">
+                            <h2 class="B2">Get specific admin playlists by user id</h2>
+                            <pre class="prex">/playlist/adminPlaylists</pre>
+                            <h4 class="verb">Verb: GET</h4>
+                            <h5>Example Request:</h5>
+                            <pre class="prex"><a target="_blank" href="https://popzit-ws.herokuapp.com/playlist/adminPlaylists?userId=596a75061926db23ecb710a0">https://popzit-ws.herokuapp.com/playlist/adminPlaylists?userId=596a75061926db23ecb710a0</a></pre>
+                            <h5>Parameters:</h5>
+                            <table>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>String</td>
+                                    <td>User ID you can get from 'Sign In' method</td>
+                                </tr>
+                            </table>
+                            <hr>
+                            <h3 class="greenText">Success 200</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+[
+    {
+        _id: "596a8de52fdd5315080aae0b",
+        user: {
+        id: "596a75061926db23ecb710a0",
+        email: "stankovic100@gmail.com",
+        firstName: "Yoav",
+        lastName: "Saroya",
+        birthdate: "1991-04-02T21:00:00.000Z",
+        gravatarHash: "709ab0743ec1f1e662d06cbf37abeeb3",
+        _id: "596a8de52fdd5315080aae0f"
+    },
+    __v: 0,
+    songs: [
+        {
+        _id: "596a8de52fdd5315080aae0e",
+        album: {
+        songs: null,
+        imagePath: "https://lastfm-img2.akamaized.net/i/u/174s/1623ee43952b4e38ce4d0d66ec1267b0.png",
+        name: "The Fame",
+        artist: null
+        },
+        youtubeId: "6nIvBI2_hSY",
+        artist: "Lady Gaga",
+        name: "Paparazzi"
+        }
+    ]
+    }
+]
+ </pre>
+                            <hr>
+                            <h3 class="redText">Error 400</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">{error: admin playlists of user XXXXXX not found}</pre>
+                            <hr>
+                        </div>
+
+
+                        <div id="publishPlaylist" class="tab-pane fade">
+                            <h2 class="B2">Save admin playlist</h2>
+                            <pre class="prex">/playlist/publishPlaylist</pre>
+                            <h4 class="verb">Verb: POST</h4>
+                            <h5>Example Request:</h5>
+                            <pre class="prex">{
+{
+	user: {
+		id: '596a75061926db23ecb710a0',
+		email: 'stankovic100@gmail.com',
+		firstName: 'Yoav',
+		lastName: 'Saroya',
+		birthdate: '1991-04-02T21:00:00.000Z',
+		gravatarHash: '709ab0743ec1f1e662d06cbf37abeeb3'
+	},
+	songs: [{
+		name: 'in the end',
+		artist: 'linkin park',
+		youtubeId: 'g9j5UzxEhEM',
+		album: [Object]
+	}]
+}
+                            </pre>
+                            <h5>Parameters:</h5>
+                            <table>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td>user</td>
+                                    <td>Object</td>
+                                    <td>Object has id:String, email:String, firstname:String, lastname:String, date:Date, gravatarHashString</td>
+                                </tr>
+                                <tr>
+                                    <td>songs</td>
+                                    <td>Song[]</td>
+                                    <td>Songs the playlists is based on</td>
+                                </tr>
+                            </table>
+                            <hr>
+                            <h3 class="greenText">Success 200</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">{
+{
+	user: {
+		id: '596a75061926db23ecb710a0',
+		email: 'stankovic100@gmail.com',
+		firstName: 'Yoav',
+		lastName: 'Saroya',
+		birthdate: '1991-04-02T21:00:00.000Z',
+		gravatarHash: '709ab0743ec1f1e662d06cbf37abeeb3'
+	},
+	songs: [{
+		name: 'in the end',
+		artist: 'linkin park',
+		youtubeId: 'g9j5UzxEhEM',
+		album: [Object]
+	}]
+}
+                            </pre>
+                            <hr>
+                            <h3 class="redText">Error 500</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">{error: internal server error, publish playlist failed}</pre>
+                            <hr>
+                        </div>
+
+
+                        <div id="updateAdminPlaylist" class="tab-pane fade">
+                            <h2 class="B2">Update admin playlist</h2>
+                            <pre class="prex">/playlist/updateAdminPlaylist</pre>
+                            <h4 class="verb">Verb: POST</h4>
+                            <h5>Example Request:</h5>
+                            <pre class="prex">
+{
+	id: '596ab4e87c88600b14ea5dd8',
+	songs: [{
+			name: 'in the end',
+			artist: 'linkin park',
+			youtubeId: 'g9j5UzxEhEM',
+			album: [Object],
+			_id: '596ab4e87c88600b14ea5dd9'
+		},
+		{
+			name: 'shape of you',
+			artist: 'ed sheeran',
+			youtubeId: 'RL25w2JpRI0',
+			album: [Object]
+		}
+	]
+}
+                            </pre>
+                            <h5>Parameters:</h5>
+                            <table>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>String</td>
+                                    <td>ID of a playlist</td>
+                                </tr>
+                                <tr>
+                                    <td>songs</td>
+                                    <td>Song[]</td>
+                                    <td>Songs the playlists is based on</td>
+                                </tr>
+                            </table>
+                            <hr>
+                            <h3 class="greenText">Success 201</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">{
+{
+	user: {
+		id: '596a75061926db23ecb710a0',
+		email: 'stankovic100@gmail.com',
+		firstName: 'Yoav',
+		lastName: 'Saroya',
+		birthdate: '1991-04-02T21:00:00.000Z',
+		gravatarHash: '709ab0743ec1f1e662d06cbf37abeeb3'
+	},
+	songs: [{
+		name: 'in the end',
+		artist: 'linkin park',
+		youtubeId: 'g9j5UzxEhEM',
+		album: [Object]
+	}]
+}
+                            </pre>
+                            <hr>
+                            <h3 class="redText">Error 500</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">{error: internal server error, update playlist failed}</pre>
+                            <hr>
+                        </div>
+
+
+                        <div id="removeAdminPlaylist" class="tab-pane fade">
+                            <h2 class="B2">Renive admin playlist</h2>
+                            <pre class="prex">/playlist/removeAdminPlaylist</pre>
+                            <h4 class="verb">Verb: POST</h4>
+                            <h5>Example Request:</h5>
+                            <pre class="prex">
+{
+	id: '596ab4e87c88600b14ea5dd8'
+}</pre>
+                            <h5>Parameters:</h5>
+                            <table>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>String</td>
+                                    <td>ID of a playlist</td>
+                                </tr>
+                            </table>
+                            <hr>
+                            <h3 class="greenText">Success 200</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">
+{Msg": 596ab4e87c88600b14ea5dd8 Successfully removed}
+                            </pre>
+                            <hr>
+                            <h3 class="redText">Error 400</h3>
+                            <h5>Example Response:</h5>
+                            <pre class="prex">{error: admin playlist XXXXXX has not found}</pre>
+                            <hr>
+                        </div>
+
 
                     </div>
                 </div>

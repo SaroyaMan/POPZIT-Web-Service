@@ -14,12 +14,13 @@ exports.getPlaylist = (req, res, next) => {
 
 exports.savePlaylist = (req, res, next) => {
     let data = req.body;
+    console.log(data);
 
     Playlist.update({user: data.user}, {user: data.user, songs: data.songs}, {upsert: true },
         (err) => {
             if(err) {
                 console.log(`err: ${err}`);
-                res.status(500).json(err);
+                res.status(500).json({"error": "internal server error, save playlist failed"});
             }
             else {
                 console.log('Playlist updated');
@@ -47,12 +48,13 @@ exports.getAllAdminPlaylists = (req, res, next) => {
             res.status(200).json(playlists);
         })
         .catch( (err) => {
-            res.status(400).json({"error": `admin playlists of user ${userId} not found`});
+            res.status(400).json({"error": `admin playlists of was not found`});
         });
 };
 
 exports.publishPlaylist = (req, res, next) => {
     let data = req.body;
+    console.log(data);
 
     let adminPlaylist = new AdminPlaylist({
         user: data.user,
@@ -62,7 +64,7 @@ exports.publishPlaylist = (req, res, next) => {
         (err) => {
             if(err) {
                 console.log(`err: ${err}`);
-                res.status(500).json(err);
+                res.status(500).json({"error": "internal server error, publish playlist failed"});
             }
             else {
                 console.log('Admin Playlist saved');
@@ -74,11 +76,12 @@ exports.publishPlaylist = (req, res, next) => {
 exports.updateAdminPlaylist = (req, res, next) => {
     let playlistId = req.body.id;
     let songs      = req.body.songs;
+    console.log(req.body);
     AdminPlaylist.update({_id: playlistId},{songs: songs}, {upsert: true},
         (err) => {
             if(err) {
                 console.log(`err: ${err}`);
-                res.status(500).json(err);
+                res.status(500).json({"error": "internal server error, update playlist failed"});
             }
             else {
                 console.log('Admin Playlist updated');
@@ -93,6 +96,6 @@ exports.removeAdminPlaylist = (req, res, next) => {
         if(err) {
             res.status(400).json({"error": `admin playlist ${playlistId} has not found`});
         }
-        res.status(200).json("Msg: Successfully removed");
+        res.status(200).json({"Msg": `${playlistId} Successfully removed`});
     });
 };
