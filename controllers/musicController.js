@@ -12,19 +12,52 @@ exports.getDefaultSubgenres = (req, res, next) => {
 
 exports.getAlbum = (req, res, next) => {
 
-    let album  = req.query.name,
+    let albumName  = req.query.name,
         artist = req.query.artist;
 
-    if(artist === undefined || album === undefined) {
+    if(artist === undefined || albumName === undefined) {
         res.status(400).json({"error": 'artist or name not sent'});
         return; //In order to avoid sending a response twice to the client.
     }
 
-    request.get(`${keys.LASTFM_KEY}&method=album.getinfo&artist=${artist}&album=${album}`, (err, resp, body) => {
+    new Promise( (resolve, reject) => {
+        request.get(`${keys.LASTFM_KEY}&method=album.getinfo&artist=${artist}&album=${albumName}`,
+            (err, resp, body) => {
+                if(err) {
+                    reject({"error": err});
+                    return; //In order to avoid sending a response twice to the client.
+                }
+                let lastFmAlbomJson = JSON.parse(body);
+                let songsParsed = [];
 
-        let lastFmAlbomJson = JSON.parse(body);
-        res.status(200).json(lastFmAlbomJson);
-    });
+                if(lastFmAlbomJson.album === undefined) {
+                    console.log('what?');
+                    reject({"error": `Album ${albumName} by artist ${artist} has not been found`});
+                    return; //In order to avoid sending a response twice to the client.
+                }
+
+                let album = {
+                    artist: lastFmAlbomJson.album.artist,
+                    name: lastFmAlbomJson.album.name,
+                    imagePath: lastFmAlbomJson.album.image[2]['#text'],
+                    songs: songsParsed
+                };
+
+                for(let song of lastFmAlbomJson.album.tracks.track) {
+                    songsParsed.push(
+                        {
+                            name: song.name,
+                            artist: artist,
+                        }
+                    );
+                }
+                console.log(album);
+                resolve(album);
+            });
+    })
+        .then( (jsonResponse)       => res.status(200).json(jsonResponse))
+        .catch( (jsonError)         => res.status(400).json(jsonError));
+
 };
 
 
